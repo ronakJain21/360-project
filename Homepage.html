@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MessiIsTheGoat - Home</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://kit.fontawesome.com/your-kit-code.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">MessiIsTheGoat</div>
+            <div class="nav-links">
+                <a href="#">Home</a>
+                <a href="#">Categories</a>
+                <a href="#">Login</a>
+                <a href="#">Register</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main>
+            <section class="create-post-box">
+                <div class="create-post-input">
+                    <i class="fa fa-edit"></i>
+                    <input type="text" placeholder="Create Post" readonly onClick="location.href='create-post.html'">
+                </div>
+                <div class="create-post-icons">
+                    <i class="fa fa-image"></i>
+                    <i class="fa fa-link"></i>
+                    <i class="fa fa-edit"></i>
+                </div>
+            </section>
+            <section class="posts">
+                <!-- Post 1 -->
+                <article class="post">
+                    <div class="vote">
+                        <button class="upvote-btn"><i class="fa fa-arrow-up"></i></button>
+                        <div class="vote-count">123</div>
+                        <button class="downvote-btn"><i class="fa fa-arrow-down"></i></button>
+                    </div>
+                    <div class="post-info">
+                        <h2><a href="#">Discussion Title 1</a></h2>
+                        <p>Posted by <a href="#">user123</a> 1 hour ago</p>
+                    </div>
+                </article>
+                <!-- Comment Section for Post 1 -->
+                <div class="comment-section">
+                    <input type="text" placeholder="Add a comment..." class="comment-input">
+                    <button class="comment-btn">Comment</button>
+                </div>
+                
+                <!-- Post 2 about Messi -->
+                <article class="post">
+                    <div class="vote">
+                        <button class="upvote-btn"><i class="fa fa-arrow-up"></i></button>
+                        <div class="vote-count">980</div>
+                        <button class="downvote-btn"><i class="fa fa-arrow-down"></i></button>
+                    </div>
+                    <div class="post-content">
+                        <h2>Messi - The Legend Continues</h2>
+                        <p class="post-meta">Posted by <a href="#">soccerfan123</a> 2 hours ago</p>
+                        <div class="post-body">
+                            <p>Lionel Messi continues to astonish the world with his impeccable skills on the football pitch. Even after decades, his ability to change the course of the game with a single touch is something that upcoming players idolize.</p>
+                            <p>His dedication to the sport and his team is unparalleled. Messi's presence on the field is enough to uplift the spirits of both his teammates and fans around the world. He is not just a player; he is a phenomenon that transcends the sport itself.</p>
+                        </div>
+                        <!-- Additional post content like images/videos can go here -->
+                    </div>
+                </article>
+                <!-- Comment Section for Post 2 -->
+                <div class="comment-section">
+                    <input type="text" placeholder="Add a comment..." class="comment-input">
+                    <button class="comment-btn">Comment</button>
+                </div>
+                <!-- Add more posts as needed -->
+            </section>
+        </main>
+        <aside class="sidebar">
+            <section class="top-threads">
+                <h3>Top Threads</h3>
+                <ul>
+                    <li><a href="#">Thread Title 1</a></li>
+                    <li><a href="#">Thread Title 2</a></li>
+                    <li><a href="#">Thread Title 3</a></li>
+                </ul>
+            </section>
+
+            <section class="recent-posts">
+                <h3>Recent Posts</h3>
+                <ul>
+                    <li><a href="#">Recent Post 1</a></li>
+                    <li><a href="#">Recent Post 2</a></li>
+                    <li><a href="#">Recent Post 3</a></li>
+                </ul>
+            </section>
+        </aside>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 MessiIsTheGoat</p>
+    </footer>
+</body>
+</html>
