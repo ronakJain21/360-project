@@ -1,33 +1,72 @@
 body {
     font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
     background: #f4f4f4;
 }
 
 header {
     background: #004d98; /* Barcelona Blue */
     color: white;
-    padding: 10px 20px;
 }
 
-.navbar .logo {
-    font-size: 1.5em;
-    font-weight: bold;
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5px;
 }
 
-.nav-links a {
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo-image {
+    height: 50px; /* Adjust based on your actual logo size */
+}
+
+.logo-title {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 24px; /* Adjust as needed */
+    margin-left: 10px;
+}
+
+.nav-link, .nav-button {
     color: white;
-    margin-left: 15px;
     text-decoration: none;
+    margin: 0 15px; /* Adjust the spacing between the links */
     padding: 5px 10px;
-    transition: background-color 0.3s ease;
+    font-size: 16px; /* Adjust as needed */
 }
 
-.nav-links a:hover {
+.nav-link:hover, .nav-button:hover {
+    background-color: #003366; /* Darker blue on hover */
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    margin: 0 15px; /* Add margin to the search container */
+}
+
+.search-input {
+    padding: 5px 10px;
+    border-radius: 20px;
+    border: none;
+    outline: none;
+}
+
+.search-btn {
+    background: none;
+    border: none;
+    margin-left: 5px;
+    cursor: pointer;
+    color: white;
+}
+
+.nav-button {
     background-color: #a50044; /* Barcelona Red */
+    border-radius: 4px;
 }
-
 .container {
     display: flex;
     padding: 20px;
@@ -92,25 +131,26 @@ main {
     border: 1px solid #ddd;
 }
 
-.vote {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 5px;
-    margin-right: 15px;
-}
-
-.upvote-btn, .downvote-btn {
-    background: none;
-    border: none;
+.vote-btn {
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
     cursor: pointer;
-    color: #888; /* Neutral color */
-    transition: color 0.3s ease;
+    transition: background-color 0.3s;
 }
 
-.upvote-btn:hover, .downvote-btn:hover {
-    color: #ff4500; /* Highlight color for votes */
+.vote-btn.upvote-btn.active,
+.vote-btn.upvote-btn:hover {
+    background-color: #4CAF50; /* Green for upvote */
+    color: white;
 }
+
+.vote-btn.downvote-btn.active,
+.vote-btn.downvote-btn:hover {
+    background-color: #F44336; /* Red for downvote */
+    color: white;
+}
+
 
 .vote-count {
     margin: 5px 0;
