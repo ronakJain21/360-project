@@ -21,21 +21,21 @@ header {
 }
 
 .logo-image {
-    height: 50px; /* Adjust based on your actual logo size */
+    height: 50px;
 }
 
 .logo-title {
     font-family: 'Times New Roman', Times, serif;
-    font-size: 24px; /* Adjust as needed */
+    font-size: 24px; 
     margin-left: 10px;
 }
 
 .nav-link, .nav-button {
     color: white;
     text-decoration: none;
-    margin: 0 15px; /* Adjust the spacing between the links */
+    margin: 0 15px;
     padding: 5px 10px;
-    font-size: 16px; /* Adjust as needed */
+    font-size: 16px; 
 }
 
 .nav-link:hover, .nav-button:hover {
@@ -45,7 +45,7 @@ header {
 .search-container {
     display: flex;
     align-items: center;
-    margin: 0 15px; /* Add margin to the search container */
+    margin: 0 15px;
 }
 
 .search-input {
@@ -84,7 +84,7 @@ main {
     border: 1px solid #ccc;
     border-radius: 22px;
     margin: 20px auto;
-    max-width: 600px; /* Adjust width as needed */
+    max-width: 600px;
     background-color: #fff;
 }
 
@@ -115,7 +115,7 @@ main {
 }
 
 .create-post-icons i:hover {
-    color: #007bff; /* Or use any color for hover state */
+    color: #007bff; 
 }
 
 .posts {
@@ -141,13 +141,13 @@ main {
 
 .vote-btn.upvote-btn.active,
 .vote-btn.upvote-btn:hover {
-    background-color: #4CAF50; /* Green for upvote */
+    background-color: #4CAF50; 
     color: white;
 }
 
 .vote-btn.downvote-btn.active,
 .vote-btn.downvote-btn:hover {
-    background-color: #F44336; /* Red for downvote */
+    background-color: #F44336; 
     color: white;
 }
 
@@ -168,14 +168,14 @@ main {
 
 .comment-section {
     margin-top: 10px;
-    margin-bottom: 20px; /* Add space after the comment section */
+    margin-bottom: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px;
     background-color: #fff;
     border: 1px solid #ccc;
-    /* Other styles remain the same */
+    
 }
 
 
