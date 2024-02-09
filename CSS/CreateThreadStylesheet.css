@@ -1,0 +1,105 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f4f4f4;
+    text-align: center;
+    counter-reset: formInput;
+}
+
+header {
+    background: #004d98; /* Barcelona Blue */
+    color: white;
+    padding: 10px 20px;
+}
+.navbar .logo {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.nav-links a {
+    color: white;
+    margin-left: 15px;
+    text-decoration: none;
+    padding: 5px 10px;
+    transition: background-color 0.3s ease;
+}
+
+.nav-links a:hover {
+    background-color: #a50044; /* Barcelona Red */
+}
+
+.container {
+    position:relative;
+    top:100px;
+}
+.container h1{
+    text-align:center;
+    color: black;
+    font: weight 100em;;
+    font-size:2em;
+    margin-bottom:10px;
+}
+.container h2{
+    font-family:"droid serif";
+    font-style:italic;
+    color:rgb(67, 63, 63);
+    text-align:center;
+    font-size:1.2em;
+}
+.container form span::before {
+    counter-increment:formInput;
+    content:counter(formInput);
+    border:2px solid #0033ff;
+    width:40px;
+    height:40px;
+    color:#000000;
+    display:inline-block;
+    border-radius:50%;
+    line-height:1.6em;
+    font-size:1.5em;
+    position:relative;
+    left:-22px;
+    top:-11px;
+    background:#4966da;
+}
+form{
+    display:inline-block;
+}
+.fields{
+    border-left:2px solid #4c2639
+}
+.container span{
+    margin-bottom:22px;
+    display:inline-block;
+}
+
+.container span:last-child{
+    margin-bottom:-11px;
+}
+input{
+    border:none;
+    outline:none;
+    display:inline-block;
+    height:34px;
+    vertical-align:middle;
+    position:relative;
+    bottom:14px;
+    right:9px;
+    border-radius:22px;
+    width:220px;
+    box-sizing:border-box;
+    padding:0 18px;
+}
+input[type="submit"]{
+    background:#4966da;
+    color:#fff;
+    position:relative;
+    left:9px;
+    top:25px;
+    width:100px;
+    cursor:pointer;
+}
+#textbox {
+    height: 250px;
+}
