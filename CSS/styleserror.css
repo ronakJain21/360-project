@@ -1,0 +1,76 @@
+/* Navbar Styles */
+.navbar {
+    background: #004d98; /* Barcelona Blue */
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo-image {
+    height: 50px;
+}
+
+.logo-title {
+    color: white;
+    margin-left: 10px;
+    font-size: 24px;
+}
+
+.nav-link, .nav-button {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    padding: 5px 10px;
+    font-size: 16px;
+}
+
+.nav-link:hover, .nav-button:hover {
+    background-color: #a50044; /* Barcelona Red */
+}
+
+.nav-button {
+    background-color: #a50044; /* Barcelona Red */
+    border-radius: 4px;
+}
+.error-container {
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.error-container h1 {
+    color: #004d98; /* Barcelona Blue */
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.error-container p {
+    font-size: 20px;
+    color: #555;
+}
+
+.error-container h2 {
+    color: #a50044; /* Barcelona Red */
+    margin: 20px 0;
+}
+
+.home-link {
+    display: inline-block;
+    background-color: #004d98; /* Barcelona Blue */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+}
+
+.home-link:hover {
+    background-color: #a50044; /* Barcelona Red */
+}
