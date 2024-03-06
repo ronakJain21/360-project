@@ -90,9 +90,7 @@ main {
 }
 
 .create-post-input, .create-thread-input {
-    display: flex;
     align-items: center;
-    flex-grow: 1;
     margin-right: 10px;
 }
 
