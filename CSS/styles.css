@@ -123,14 +123,23 @@ main {
 
 .post {
     display: flex;
+    align-items: flex-start; /* Align the start of the items */
     background: white;
     padding: 20px;
     margin-bottom: 20px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     border: 1px solid #ddd;
+    margin: 5px 0;
+}
+.vote {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-right: 20px;
 }
 
 .vote-btn {
+    margin: 5px 0;
     padding: 5px 10px;
     border: 1px solid #ccc;
     background-color: #f9f9f9;
@@ -167,16 +176,21 @@ main {
     color: #777;
     font-size: 0.9em;
 }
+.post-body {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
 
 .comment-section {
-    margin-top: 10px;
-    margin-bottom: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px;
-    background-color: #fff;
-    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    border-top: 1px solid #ddd;
+    margin-top: 20px; /* Space from post content to comment section */
+    width: 100%; /* Ensures comment section spans entire width of the post */
 }
 
 .comment-btn {
@@ -228,7 +242,7 @@ main {
 }
 
 .sidebar li a:hover {
-    background-color: #f4f4f4;
+    background-color: #f4f4f9; /* Slightly lighter for hover effect */
 }
 
 footer {

@@ -49,31 +49,31 @@
                     <i class="fas fa-edit"></i>
                 </div>
             </section>
-            <section class="posts">
+            <div class="posts" id="posts-container">
                 <!-- Post 1 -->
-                <article class="post">
+                <article class="post" id="post-1">
                     <div class="vote">
-                        <button class="vote-btn upvote-btn"><i class="fas fa-arrow-up"></i></button>
-                        <div class="vote-count">980</div>
-                        <button class="vote-btn downvote-btn"><i class="fas fa-arrow-down"></i></button>
+                        <button class="vote-btn upvote-btn" id="upvote-1"><i class="fas fa-arrow-up"></i></button>
+                        <div class="vote-count" id="vote-count-1">980</div>
+                        <button class="vote-btn downvote-btn" id="downvote-1"><i class="fas fa-arrow-down"></i></button>
                     </div>
                     <div class="post-info">
                         <h2><a href="#">Discussion Title 1</a></h2>
                         <p>Posted by <a href="#">user123</a> 1 hour ago</p>
                     </div>
+                    <!-- Comment Section for Post 1 -->
+                    <div class="comment-section">
+                        <input type="text" placeholder="Add a comment..." class="comment-input">
+                        <button class="comment-btn">Comment</button>
+                    </div>
                 </article>
-                <!-- Comment Section for Post 1 -->
-                <div class="comment-section">
-                    <input type="text" placeholder="Add a comment..." class="comment-input">
-                    <button class="comment-btn">Comment</button>
-                </div>
-                
+
                 <!-- Post 2 about Messi -->
-                <article class="post">
+                <article class="post" id="post-2">
                     <div class="vote">
-                        <button class="vote-btn upvote-btn"><i class="fas fa-arrow-up"></i></button>
-                        <div class="vote-count">980</div>
-                        <button class="vote-btn downvote-btn"><i class="fas fa-arrow-down"></i></button>
+                        <button class="vote-btn upvote-btn" id="upvote-2"><i class="fas fa-arrow-up"></i></button>
+                        <div class="vote-count" id="vote-count-2">950</div>
+                        <button class="vote-btn downvote-btn" id="downvote-2"><i class="fas fa-arrow-down"></i></button>
                     </div>
                     <div class="post-content">
                         <h2>Messi - The Legend Continues</h2>
@@ -83,13 +83,13 @@
                             <p>His dedication to the sport and his team is unparalleled. Messi's presence on the field is enough to uplift the spirits of both his teammates and fans around the world. He is not just a player; he is a phenomenon that transcends the sport itself.</p>
                         </div>
                     </div>
+                    <!-- Comment Section for Post 2 -->
+                    <div class="comment-section">
+                        <input type="text" placeholder="Add a comment..." class="comment-input">
+                        <button class="comment-btn">Comment</button>
+                    </div>
                 </article>
-                <!-- Comment Section for Post 2 -->
-                <div class="comment-section">
-                    <input type="text" placeholder="Add a comment..." class="comment-input">
-                    <button class="comment-btn">Comment</button>
-                </div>
-            </section>
+            </div>
         </main>
         <aside class="sidebar">
             <section class="top-threads">
@@ -114,5 +114,51 @@
     <footer>
         <p>&copy; 2024 MessiIsTheGoat</p>
     </footer>
+    <script>
+        function sortPosts() {
+            let postsContainer = document.getElementById('posts-container');
+            let posts = Array.from(postsContainer.getElementsByClassName('post'));
+            
+            // Sort posts based on the vote count
+            posts.sort((a, b) => {
+                let votesA = parseInt(a.querySelector('.vote-count').innerText);
+                let votesB = parseInt(b.querySelector('.vote-count').innerText);
+                return votesB - votesA; // Sort in descending order
+            });
+            
+            // Append posts back to the container in the new order
+            posts.forEach(post => postsContainer.appendChild(post));
+        }
+        
+        document.addEventListener('DOMContentLoaded', (event) => {
+            var numberOfPosts = 2; // Update this based on actual number of posts
+            for (let i = 1; i <= numberOfPosts; i++) {
+                document.getElementById('upvote-' + i).addEventListener('click', function() {
+                    upvote(i);
+                    sortPosts(); // Sort posts after voting
+                });
+        
+                document.getElementById('downvote-' + i).addEventListener('click', function() {
+                    downvote(i);
+                    sortPosts(); // Sort posts after voting
+                });
+            }
+        });
+        
+        // Upvote and downvote functions
+        function upvote(postId) {
+            var voteCountElement = document.getElementById('vote-count-' + postId);
+            var voteCount = parseInt(voteCountElement.innerText);
+            voteCount++;
+            voteCountElement.innerText = voteCount;
+        }
+        
+        function downvote(postId) {
+            var voteCountElement = document.getElementById('vote-count-' + postId);
+            var voteCount = parseInt(voteCountElement.innerText);
+            voteCount--;
+            voteCountElement.innerText = voteCount;
+        }
+    </script>
 </body>
 </html>
