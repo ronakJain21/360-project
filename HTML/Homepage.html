@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MessiIsTheGoat - Home</title>
     <link rel="stylesheet" href="../CSS/styles.css">
-    <script src="https://kit.fontawesome.com/your-kit-code.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/69d2da3707.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <header>
@@ -18,7 +18,7 @@
             <a href="#" class="nav-link">Categories</a>
             <div class="search-container">
                 <input type="text" placeholder="Search..." class="search-input">
-                <button class="search-btn"><i class="fa fa-search"></i></button>
+                <button class="search-btn"><i class="fas fa-search"></i></button>
             </div>
             <a href="#" class="nav-link">Login</a>
             <a href="#" class="nav-button">Register</a>
@@ -29,22 +29,33 @@
         <main>
             <section class="create-post-box">
                 <div class="create-post-input">
-                    <i class="fa fa-edit"></i>
+                    <i class="fas fa-edit"></i>
                     <input type="text" placeholder="Create Post" readonly onClick="location.href='create-post.html'">
                 </div>
                 <div class="create-post-icons">
-                    <i class="fa fa-image"></i>
-                    <i class="fa fa-link"></i>
-                    <i class="fa fa-edit"></i>
+                    <i class="fas fa-image"></i>
+                    <i class="fas fa-link"></i>
+                    <i class="fas fa-edit"></i>
+                </div>
+            </section>
+            <section class="create-thread-box">
+                <div class="create-thread-input">
+                    <i class="fas fa-comments"></i>
+                    <input type="text" placeholder="Create Thread" readonly onClick="location.href='create-thread.html'">
+                </div>
+                <div class="create-thread-icons">
+                    <i class="fas fa-hashtag"></i>
+                    <i class="fas fa-link"></i>
+                    <i class="fas fa-edit"></i>
                 </div>
             </section>
             <section class="posts">
                 <!-- Post 1 -->
                 <article class="post">
                     <div class="vote">
-                        <button class="vote-btn upvote-btn">Upvote</button>
+                        <button class="vote-btn upvote-btn"><i class="fas fa-arrow-up"></i></button>
                         <div class="vote-count">980</div>
-                        <button class="vote-btn downvote-btn">Downvote</button>
+                        <button class="vote-btn downvote-btn"><i class="fas fa-arrow-down"></i></button>
                     </div>
                     <div class="post-info">
                         <h2><a href="#">Discussion Title 1</a></h2>
@@ -60,9 +71,9 @@
                 <!-- Post 2 about Messi -->
                 <article class="post">
                     <div class="vote">
-                        <button class="vote-btn upvote-btn">Upvote</button>
+                        <button class="vote-btn upvote-btn"><i class="fas fa-arrow-up"></i></button>
                         <div class="vote-count">980</div>
-                        <button class="vote-btn downvote-btn">Downvote</button>
+                        <button class="vote-btn downvote-btn"><i class="fas fa-arrow-down"></i></button>
                     </div>
                     <div class="post-content">
                         <h2>Messi - The Legend Continues</h2>
@@ -71,7 +82,6 @@
                             <p>Lionel Messi continues to astonish the world with his impeccable skills on the football pitch. Even after decades, his ability to change the course of the game with a single touch is something that upcoming players idolize.</p>
                             <p>His dedication to the sport and his team is unparalleled. Messi's presence on the field is enough to uplift the spirits of both his teammates and fans around the world. He is not just a player; he is a phenomenon that transcends the sport itself.</p>
                         </div>
-                        <!-- Additional post content like images/videos can go here -->
                     </div>
                 </article>
                 <!-- Comment Section for Post 2 -->
@@ -79,7 +89,6 @@
                     <input type="text" placeholder="Add a comment..." class="comment-input">
                     <button class="comment-btn">Comment</button>
                 </div>
-                <!-- Add more posts as needed -->
             </section>
         </main>
         <aside class="sidebar">
@@ -91,7 +100,6 @@
                     <li><a href="#">Thread Title 3</a></li>
                 </ul>
             </section>
-
             <section class="recent-posts">
                 <h3>Recent Posts</h3>
                 <ul>
