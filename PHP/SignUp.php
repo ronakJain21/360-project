@@ -6,6 +6,7 @@ $usernameError = '';
 $emailError = '';
 $passwordError = '';
 $confirmPasswordError = '';
+$profilePicError = '';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = trim(htmlspecialchars($_POST['username']));
