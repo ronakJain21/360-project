@@ -28,30 +28,57 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($password != $confirmPassword) {
         $confirmPasswordError = "Passwords do not match.";
     }
-    
-    if (empty($usernameError) && empty($emailError) && empty($passwordError) && empty($confirmPasswordError)) {
-        // Check if username or email already exists
-        $stmt = $db->prepare("SELECT user_id FROM users WHERE username=? OR email=?");
-        $stmt->bind_param("ss", $username, $email);
-        $stmt->execute();
-        $stmt->store_result();
 
-        if ($stmt->num_rows > 0) {
-            $usernameError = "Username or Email already exists.";
+    // File upload handling
+    if (isset($_FILES['profile_pic']) && $_FILES['profile_pic']['error'] === UPLOAD_ERR_OK) {
+        // Define allowed file types and size limit
+        $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+        $maxSize = 5 * 1024 * 1024; // 5MB
+
+        $fileTmpPath = $_FILES['profile_pic']['tmp_name'];
+        $fileName = $_FILES['profile_pic']['name'];
+        $fileSize = $_FILES['profile_pic']['size'];
+        $fileType = $_FILES['profile_pic']['type'];
+        $fileNameCmps = explode('.', $fileName);
+        $fileExtension = strtolower(end($fileNameCmps));
+
+        // Check file type and size
+        if (!in_array($fileType, $allowedTypes) || $fileSize > $maxSize) {
+            $profilePicError = 'Invalid file type or size.';
         } else {
-            // Insert new user
-            $stmt = $db->prepare("INSERT INTO users (username, email, password, status) VALUES (?, ?, ?, 'active')");
-            $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-            $stmt->bind_param("sss", $username, $email, $passwordHash);
-            
-            if ($stmt->execute()) {
-                header('Location: Login.php'); // Redirect after successful signup
-                exit();
-            } else {
-                echo "Error: " . $db->error;
+            // Sanitize file name and generate a new unique file name
+            $newFileName = md5(time() . $fileName) . '.' . $fileExtension;
+            $uploadFileDir = './uploaded_images/';
+            $destFilePath = $uploadFileDir . $newFileName;
+
+            if (!move_uploaded_file($fileTmpPath, $destFilePath)) {
+                $profilePicError = 'Error uploading file.';
             }
         }
-        $stmt->close();
+    } else {
+        $profilePicError = 'Error uploading file.';
+    }
+    
+    // Continue only if there are no errors
+    if (empty($usernameError) && empty($emailError) && empty($passwordError) && empty($confirmPasswordError) && empty($profilePicError)) {
+        // Check if username or email already exists...
+        // Insert new user including profile_pic path if file upload was successful
+        if (empty($profilePicError)) {
+            $stmt = $db->prepare("INSERT INTO users (username, email, password, profile_pic, status) VALUES (?, ?, ?, ?, 'active')");
+            $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+            $stmt->bind_param("ssss", $username, $email, $passwordHash, $destFilePath);
+        } else {
+            // Handle case without profile picture
+            $stmt = $db->prepare("INSERT INTO users (username, email, password, status) VALUES (?, ?, ?, 'active')");
+            $stmt->bind_param("sss", $username, $email, $passwordHash);
+        }
+
+        if ($stmt->execute()) {
+            header('Location: Login.php'); // Redirect after successful signup
+            exit();
+        } else {
+            echo "Error: " . $db->error;
+        }
     }
     $db->close();
 }
@@ -84,6 +111,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <div class="form-error"><?php echo $confirmPasswordError; ?></div>
         <input type="password" name="confirm_password" id="text" placeholder="Retype Password"><br><br>
+
+        <div class="form-error"><?php echo $profilePicError ?? ''; ?></div>
+        Upload Profile Picture:
+        <input type="file" name="profile_pic" id="profile_pic"><br><br>
 
         <input type="submit" id="button" value="Sign up">
     </form>
