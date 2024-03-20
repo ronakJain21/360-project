@@ -114,7 +114,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="password" name="confirm_password" id="text" placeholder="Retype Password"><br><br>
 
         <div class="form-error"><?php echo $profilePicError ?? ''; ?></div>
-        Upload Profile Picture:
+        <p type="text">Upload Profile Picture:</p>
         <input type="file" name="profile_pic" id="profile_pic"><br><br>
 
         <input type="submit" id="button" value="Sign up">
