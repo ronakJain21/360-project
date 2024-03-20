@@ -64,13 +64,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MessiIsTheGOAT | Sign Up</title>
     <link rel="stylesheet" href="../CSS/signup_css.css">
-    <style>
-        .form-error {
-            color: red;
-            font-size: 14px;
-            height: 20px; /* Adjust if necessary */
-        }
-    </style>
 </head>
 <body style="font-family: tahoma; background-color: #e9ebee">
     <div id="bar">
