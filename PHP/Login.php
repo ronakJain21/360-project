@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 
     <div id="bar2">
-        <form action="login.php" method="post">
+        <form action="" method="post">
             Login To MessiIsTheGOAT<br><br>
             <input type="text" name="email" placeholder="Email"><br><br>
             <input type="password" name="password" placeholder="Password"><br><br>
