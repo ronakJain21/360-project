@@ -8,6 +8,12 @@ $passwordError = '';
 $confirmPasswordError = '';
 $profilePicError = '';
 
+// Create the uploaded_images directory if it doesn't exist
+$uploadFileDir = __DIR__ . '/uploaded_images/';
+if (!file_exists($uploadFileDir)) {
+    mkdir($uploadFileDir, 0755, true); // true for recursive creation, 0755 is the permission
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = trim(htmlspecialchars($_POST['username']));
     $email = trim(htmlspecialchars($_POST['email']));
@@ -98,7 +104,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div style="font-size: 40px;">MessiIsTheGOAT</div>
         <div id="signup_button"><a href ="Login.php">Login</a></div> 
     </div>
-    <form action="" method="post"> 
+    <form action="" method="post" enctype="multipart/form-data"> 
         Sign Up To MessiIsTheGOAT<br><br>
 
         <div class="form-error"><?php echo $usernameError; ?></div>
