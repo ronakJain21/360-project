@@ -142,7 +142,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <aside class="menubar">
             <!-- User Menu Content -->
             <section>
-                <img src="<?php echo htmlspecialchars($currentuserProfilePic); ?>" alt="Profile Pic" class="profile_pic">
+                <img src="<?php echo htmlspecialchars($currentUserProfilePic); ?>" alt="Profile Pic" class="profile_pic">
                 <h2><?php echo htmlspecialchars($username); ?></h2>
                 <button class="settings"><a href="User_Profile_Settings.php">Settings</a></button>
             </section>
