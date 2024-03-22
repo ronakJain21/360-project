@@ -5,13 +5,6 @@ error_reporting(E_ALL);
 
 include 'config.php'; // Ensure this path is correct
 
-session_start();
-
-if (!isset($_SESSION['user_id'])) {
-    header('Location: Login.php');
-    exit;
-}
-
 $usernameError = $emailError = $passwordError = $confirmPasswordError = $profilePicError = $generalError = '';
 $username = $email = '';
 
