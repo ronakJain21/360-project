@@ -104,6 +104,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <a href="#">Login</a>
                     <a href="#">Register</a>
                 </div>
+                <form action="logout.php" method="POST" style="display: inline;">
+                <button type="submit" class="logout-btn">Logout</button>
+            </form>
             </nav>
         </header>
         <div class="container">
