@@ -108,7 +108,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body style="font-family: tahoma; background-color: #e9ebee">
     <div id="bar">
         <div style="font-size: 40px;">MessiIsTheGOAT</div>
-        <div id="signup_button"><a href="Login.php">Login</a></div> 
+        <div id="signup_botton"><a href="Login.php">Login</a></div> 
     </div>
     <form action="" method="post" enctype="multipart/form-data"> 
         Sign Up To MessiIsTheGOAT<br><br>
