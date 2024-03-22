@@ -1,7 +1,6 @@
 <?php
 include 'config.php'; // Ensure this path is correct
 
-// Initialize error message
 $errorMessage = '';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -18,10 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $result = $stmt->get_result();
 
         if ($user = $result->fetch_assoc()) {
-            // Verify password
             if (password_verify($password, $user['password'])) {
-                // Password is correct
-                // Start a new session and save user information (like user_id and username) in session variables
                 session_start();
                 $_SESSION['user_id'] = $user['user_id'];
                 $_SESSION['username'] = $user['username'];
