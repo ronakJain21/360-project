@@ -1,12 +1,14 @@
 <?php
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
 include 'config.php'; // Ensure this path is correct
 
 // Initialize error messages
-$usernameError = '';
-$emailError = '';
-$passwordError = '';
-$confirmPasswordError = '';
-$profilePicError = '';
+$usernameError = $emailError = $passwordError = $confirmPasswordError = $profilePicError = '';
+
+// Initialize form values
+$username = $email = '';
 
 // Create the uploaded_images directory if it doesn't exist
 $uploadFileDir = __DIR__ . '/uploaded_images/';
@@ -19,6 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = trim(htmlspecialchars($_POST['email']));
     $password = $_POST['password'];
     $confirmPassword = $_POST['confirm_password'];
+    $destFilePath = ''; // Initialize with empty string for the case with no file upload
 
     // Basic validation
     if (empty($username)) {
@@ -26,19 +29,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     if (empty($email)) {
         $emailError = "Please enter an email.";
-    } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $emailError = "Invalid email format.";
     }
     if (empty($password)) {
         $passwordError = "Please enter a password.";
     }
-    if ($password != $confirmPassword) {
+    if ($password !== $confirmPassword) {
         $confirmPasswordError = "Passwords do not match.";
     }
 
-    // File upload handling
-    if (isset($_FILES['profile_pic']) && $_FILES['profile_pic']['error'] === UPLOAD_ERR_OK) {
-        // Define allowed file types and size limit
+    // File upload handling, proceed only if a file is actually uploaded
+    if (isset($_FILES['profile_pic']) && $_FILES['profile_pic']['size'] > 0) {
         $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
         $maxSize = 5 * 1024 * 1024; // 5MB
 
@@ -62,27 +64,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $profilePicError = 'Error uploading file.';
             }
         }
-    } else {
-        $profilePicError = 'Error uploading file.';
     }
     
-    // Continue only if there are no errors
-    if (empty($usernameError) && empty($emailError) && empty($passwordError) && empty($confirmPasswordError) && empty($profilePicError)) {
-        // Check if username or email already exists...
-        // Insert new user including profile_pic path if file upload was successful
-        if (empty($profilePicError)) {
-            $stmt = $db->prepare("INSERT INTO users (username, email, password, profile_pic, status) VALUES (?, ?, ?, ?, 'active')");
-            $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-            $stmt->bind_param("ssss", $username, $email, $passwordHash, $destFilePath);
-        } else {
-            // Handle case without profile picture
-            $stmt = $db->prepare("INSERT INTO users (username, email, password, status) VALUES (?, ?, ?, 'active')");
-            $stmt->bind_param("sss", $username, $email, $passwordHash);
-        }
+    // Continue only if there are no input validation errors
+    if (empty($usernameError) && empty($emailError) && empty($passwordError) && empty($confirmPasswordError)) {
+        // Insert new user into database
+        $stmt = $db->prepare("INSERT INTO users (username, email, password, profile_pic, status) VALUES (?, ?, ?, ?, 'active')");
+        $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+        $stmt->bind_param("ssss", $username, $email, $passwordHash, $destFilePath);
 
         if ($stmt->execute()) {
             header('Location: Login.php'); // Redirect after successful signup
-            exit();
+            exit;
         } else {
             echo "Error: " . $db->error;
         }
@@ -102,16 +95,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body style="font-family: tahoma; background-color: #e9ebee">
     <div id="bar">
         <div style="font-size: 40px;">MessiIsTheGOAT</div>
-        <div id="signup_botton"><a href ="Login.php">Login</a></div> 
+        <div id="signup_button"><a href="Login.php">Login</a></div> 
     </div>
     <form action="" method="post" enctype="multipart/form-data"> 
         Sign Up To MessiIsTheGOAT<br><br>
 
         <div class="form-error"><?php echo $usernameError; ?></div>
-        <input type="text" name="username" id="text" placeholder="Username"><br><br>
+        <input type="text" name="username" id="text" placeholder="Username" value="<?php echo $username; ?>"><br><br>
 
         <div class="form-error"><?php echo $emailError; ?></div>
-        <input type="text" name="email" id="text" placeholder="Email"><br><br>
+        <input type="text" name="email" id="text" placeholder="Email" value="<?php echo $email; ?>"><br><br>
 
         <div class="form-error"><?php echo $passwordError; ?></div>
         <input type="password" name="password" id="text" placeholder="Password"><br><br>
@@ -119,8 +112,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="form-error"><?php echo $confirmPasswordError; ?></div>
         <input type="password" name="confirm_password" id="text" placeholder="Retype Password"><br><br>
 
-        <div class="form-error"><?php echo $profilePicError ?? ''; ?></div>
-        <p type="text">Upload Profile Picture:</p>
+        <div class="form-error"><?php echo $profilePicError; ?></div>
+        <p>Upload Profile Picture (Optional):</p>
         <input type="file" name="profile_pic" id="profile_pic"><br><br>
 
         <input type="submit" id="button" value="Sign up">
