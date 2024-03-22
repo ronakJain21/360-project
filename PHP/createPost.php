@@ -15,11 +15,14 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 $errorMessage = '';
+$categoryList = ['WeLoveMESSI', 'MessiGOATArgument', 'WhyMessitheGOAT']; // List of categories
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $title = htmlspecialchars($_POST['title']);
     $body = htmlspecialchars($_POST['body']);
     $userId = $_SESSION['user_id']; // Assuming the user's ID is stored in the session
+    $threadId = !empty($_POST['thread']) ? intval($_POST['thread']) : null; // Get thread id from form and ensure it's an integer or null
+    $category = $_POST['category']; // Retrieve selected category
     $imagePath = null; // Default to no image
 
     // Validate inputs
@@ -53,10 +56,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
 
+        // Convert category name to category_id, NULL if 'No Category' is selected
+        $categoryId = null;
+        if (!empty($category) && in_array($category, $categoryList)) {
+            $categoryIdQuery = $db->prepare("SELECT category_id FROM categories WHERE name = ?");
+            $categoryIdQuery->bind_param("s", $category);
+            $categoryIdQuery->execute();
+            $result = $categoryIdQuery->get_result();
+            if ($categoryData = $result->fetch_assoc()) {
+                $categoryId = $categoryData['category_id'];
+            }
+            $categoryIdQuery->close();
+        }
+
         if (empty($errorMessage)) {
-            $stmt = $db->prepare("INSERT INTO posts (user_id, title, content, image) VALUES (?, ?, ?, ?)");
-            $stmt->bind_param("isss", $userId, $title, $body, $imagePath);
-            
+            // Insert the post into the database, include category selection
+            $stmt = $db->prepare("INSERT INTO posts (user_id, thread_id, title, content, image, category_id) VALUES (?, ?, ?, ?, ?, ?)");
+            $stmt->bind_param("iisssi", $userId, $threadId, $title, $body, $imagePath, $categoryId);
+
             if ($stmt->execute()) {
                 $errorMessage = "Post successfully created";
             } else {
@@ -105,6 +122,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <p>Add body text to your post</p>
                     <span>
                         <textarea placeholder="Add body text..." name="body" id="textbox" required></textarea>
+                    </span>
+                    <br>
+                    <p>Select Thread (Optional):</p>
+                    <span>
+                        <select name="thread">
+                            <option value="">No Thread</option>
+                            <?php
+                            $threadQuery = $db->query("SELECT thread_id, title FROM threads");
+                            while ($thread = $threadQuery->fetch_assoc()) {
+                                echo "<option value='" . $thread['thread_id'] . "'>" . htmlspecialchars($thread['title']) . "</option>";
+                            }
+                            ?>
+                        </select>
+                    </span>
+                    <br>
+                    <p>Select Category (Optional):</p>
+                    <span>
+                        <select name="category">
+                            <option value="">No Category</option>
+                            <?php foreach ($categoryList as $categoryName): ?>
+                                <option value="<?php echo htmlspecialchars($categoryName); ?>"><?php echo htmlspecialchars($categoryName); ?></option>
+                            <?php endforeach; ?>
+                        </select>
                     </span>
                     <br>
                     <p>Upload Images (Optional)</p>

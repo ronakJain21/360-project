@@ -1,19 +1,23 @@
 <?php
+
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
 include 'config.php'; // Ensure this path is correct
 
-// Initialize error messages
-$usernameError = $emailError = $passwordError = $confirmPasswordError = $profilePicError = '';
+session_start();
 
-// Initialize form values
+if (!isset($_SESSION['user_id'])) {
+    header('Location: Login.php');
+    exit;
+}
+
+$usernameError = $emailError = $passwordError = $confirmPasswordError = $profilePicError = $generalError = '';
 $username = $email = '';
 
-// Create the uploaded_images directory if it doesn't exist
 $uploadFileDir = __DIR__ . '/uploaded_images/';
 if (!file_exists($uploadFileDir)) {
-    mkdir($uploadFileDir, 0755, true); // true for recursive creation, 0755 is the permission
+    mkdir($uploadFileDir, 0755, true);
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -21,13 +25,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = trim(htmlspecialchars($_POST['email']));
     $password = $_POST['password'];
     $confirmPassword = $_POST['confirm_password'];
-    $destFilePath = ''; // Initialize with empty string for the case with no file upload
+    $destFilePath = '';
 
-    // Basic validation
     if (empty($username)) {
         $usernameError = "Please enter a username.";
     } else {
-        // Check if username already exists
         $stmt = $db->prepare("SELECT username FROM users WHERE username = ?");
         $stmt->bind_param("s", $username);
         $stmt->execute();
@@ -36,12 +38,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($stmt->num_rows > 0) {
             $usernameError = "Username already exists.";
         }
+        $stmt->close();
     }
+
     if (empty($email)) {
         $emailError = "Please enter an email.";
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $emailError = "Invalid email format.";
+    } else {
+        $stmt = $db->prepare("SELECT email FROM users WHERE email = ?");
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $stmt->store_result();
+
+        if ($stmt->num_rows > 0) {
+            $emailError = "Email already exists.";
+        }
+        $stmt->close();
     }
+
     if (empty($password)) {
         $passwordError = "Please enter a password.";
     }
@@ -49,10 +64,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $confirmPasswordError = "Passwords do not match.";
     }
 
-    // File upload handling, proceed only if a file is actually uploaded
     if (isset($_FILES['profile_pic']) && $_FILES['profile_pic']['size'] > 0) {
         $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
-        $maxSize = 5 * 1024 * 1024; // 5MB
+        $maxSize = 5 * 1024 * 1024; 
 
         $fileTmpPath = $_FILES['profile_pic']['tmp_name'];
         $fileName = $_FILES['profile_pic']['name'];
@@ -61,13 +75,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $fileNameCmps = explode('.', $fileName);
         $fileExtension = strtolower(end($fileNameCmps));
 
-        // Check file type and size
         if (!in_array($fileType, $allowedTypes) || $fileSize > $maxSize) {
             $profilePicError = 'Invalid file type or size.';
         } else {
-            // Sanitize file name and generate a new unique file name
             $newFileName = md5(time() . $fileName) . '.' . $fileExtension;
-            $uploadFileDir = './uploaded_images/';
             $destFilePath = $uploadFileDir . $newFileName;
 
             if (!move_uploaded_file($fileTmpPath, $destFilePath)) {
@@ -76,19 +87,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
     
-    // Continue only if there are no input validation errors
     if (empty($usernameError) && empty($emailError) && empty($passwordError) && empty($confirmPasswordError)) {
-        // Insert new user into database
         $stmt = $db->prepare("INSERT INTO users (username, email, password, profile_pic, status) VALUES (?, ?, ?, ?, 'active')");
         $passwordHash = password_hash($password, PASSWORD_DEFAULT);
         $stmt->bind_param("ssss", $username, $email, $passwordHash, $destFilePath);
 
         if ($stmt->execute()) {
-            header('Location: Login.php'); // Redirect after successful signup
+            header('Location: Login.php');
             exit;
         } else {
-            echo "Error: " . $db->error;
+            $generalError = "An error occurred during registration. Please try again.";
         }
+        $stmt->close();
     }
     $db->close();
 }
@@ -109,6 +119,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
     <form action="" method="post" enctype="multipart/form-data"> 
         Sign Up To MessiIsTheGOAT<br><br>
+
+        <div class="form-error"><?php echo $generalError; ?></div>
 
         <div class="form-error"><?php echo $usernameError; ?></div>
         <input type="text" name="username" id="text" placeholder="Username" value="<?php echo $username; ?>"><br><br>
