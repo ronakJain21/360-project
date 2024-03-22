@@ -54,36 +54,25 @@
                 <input type="text" placeholder="Search..." class="search-input">
                 <button class="search-btn"><i class="fa fa-search"></i></button>
             </div>
-            <a href="#" class="nav-link">Login</a>
-            <a href="#" class="nav-button">Register</a>
+            <!-- <a href="#" class="nav-link">Login</a>
+            <a href="#" class="nav-button">Register</a> -->
         </nav>
     </header>
 
     <div class="container">
         <aside class="menubar">
             <section>
-                <?php
-                // Assume $userProfilePic and $username are obtained from the database or session
-                $userProfilePic = '/path/to/default/profile_pic.png'; // Default profile picture path
-                $username = '@defaultUser'; // Default username
-
-                // Check if user has a profile picture set
-                if ($userProfilePic) {
-                    echo "<img src=\"$userProfilePic\" alt=\"Profile Pic\" class=\"profile_pic\">";
-                }
-
-                // Display the username
-                echo "<h2>$username</h2>";
-                ?>
-                <button class="settings">Settings</button>
+                <img src="<?php echo htmlspecialchars($userProfilePic); ?>" alt="Profile Pic" class="profile_pic">
+                <h2><?php echo htmlspecialchars($username); ?></h2>
+                <button class="settings"><a href="user_profile_settings.php">Settings</a></button>
             </section>
 
             <section>
                 <h3>Menu</h3>
                 <ul>
-                    <li><a href="#"><img src="/Pictures/home_icon.webp" alt="Navigate to Home" class="menubar_icon">Home</a></li>
-                    <li><a href="#"><img src="/Pictures/admin_icon.webp" alt="Navigate to Admin" class="menubar_icon">Admin Portal</a></li>
-                    <li><a href="#"><img src="/Pictures/threads_icon2.webp" alt="Navigate to Threads" class="menubar_icon">Threads</a></li>
+                    <li><a href="#"><img src="../Pictures/home_icon.webp" alt="Navigate to Home" class="menubar_icon">Home</a></li>
+                    <li><a href="#"><img src="../Pictures/admin_icon.webp" alt="Navigate to Admin" class="menubar_icon">Admin Portal</a></li>
+                    <li><a href="#"><img src="../Pictures/threads_icon2.webp" alt="Navigate to Threads" class="menubar_icon">Threads</a></li>
                 </ul>
             </section>
         </aside>

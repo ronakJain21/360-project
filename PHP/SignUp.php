@@ -26,6 +26,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Basic validation
     if (empty($username)) {
         $usernameError = "Please enter a username.";
+    } else {
+        // Check if username already exists
+        $stmt = $db->prepare("SELECT username FROM users WHERE username = ?");
+        $stmt->bind_param("s", $username);
+        $stmt->execute();
+        $stmt->store_result();
+
+        if ($stmt->num_rows > 0) {
+            $usernameError = "Username already exists.";
+        }
     }
     if (empty($email)) {
         $emailError = "Please enter an email.";
