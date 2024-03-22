@@ -104,8 +104,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-
-$stmt->close();
 ?>
 
 <!DOCTYPE html>
@@ -132,6 +130,9 @@ $stmt->close();
                 <button class="search-btn"><i class="fa fa-search"></i></button>
             </div>
             <a href="User_Profile.php" class="nav-link">Welcome, <?php echo htmlspecialchars($username); ?></a>
+            <form action="logout.php" method="POST" style="display: inline;">
+                <button type="submit" class="logout-btn">Logout</button>
+            </form>
             <!-- <a href="#" class="nav-link">Login</a>
             <a href="#" class="nav-button">Register</a> -->
         </nav>
@@ -141,9 +142,9 @@ $stmt->close();
         <aside class="menubar">
             <!-- User Menu Content -->
             <section>
-                <img src="<?php echo htmlspecialchars($userProfilePic); ?>" alt="Profile Pic" class="profile_pic">
+                <img src="<?php echo htmlspecialchars($currentuserProfilePic); ?>" alt="Profile Pic" class="profile_pic">
                 <h2><?php echo htmlspecialchars($username); ?></h2>
-                <button class="settings"><a href="user_profile_settings.php">Settings</a></button>
+                <button class="settings"><a href="User_Profile_Settings.php">Settings</a></button>
             </section>
 
             <section>
@@ -161,7 +162,7 @@ $stmt->close();
                 <form action="user_profile_settings.php" method="post" enctype="multipart/form-data">
                     <!-- Profile Picture Update Section -->
                     <h4>Change Profile Picture:</h4>
-                    <img src="<?php echo htmlspecialchars($currentUserProfilePic); ?>" alt="Profile Pic" class="profile_pic_small">
+                    <img src="<?php echo htmlspecialchars($currentUserProfilePic); ?>" alt="Profile Pic" class="profile_pic_small"><br><br>
                     <input type="file" name="new_profile_pic">
                     <?php if ($profilePicError): ?>
                         <p class="error"><?php echo $profilePicError; ?></p>
@@ -181,6 +182,7 @@ $stmt->close();
                     <?php if ($passwordError): ?>
                         <p class="error"><?php echo $passwordError; ?></p>
                     <?php endif; ?>
+                    <br><br>
 
                     <!-- Submission Button -->
                     <button type="submit">Update Settings</button>
