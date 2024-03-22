@@ -1,4 +1,6 @@
 <?php
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $title = htmlspecialchars($_POST['title']);
         $body = htmlspecialchars($_POST['body']);
