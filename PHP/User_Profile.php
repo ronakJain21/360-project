@@ -1,10 +1,44 @@
+<?php
+    // Start the session
+    session_start();
+
+    include 'config.php'; // Ensure this path is correct
+
+    // Check if the user is logged in
+    if (!isset($_SESSION['username'])) {
+        // Redirect to login page or handle accordingly
+        header('Location: Login.php');
+        exit;
+    }
+
+    $username = $_SESSION['username'];
+
+    // Fetch user information from database
+    $stmt = $db->prepare("SELECT username, profile_pic FROM users WHERE username = ?");
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        $user = $result->fetch_assoc();
+        $userProfilePic = $user['profile_pic'] ?: '/path/to/default/profile_pic.png';
+        $username = $user['username'];
+    } else {
+        // Handle case where user data is not found
+        $userProfilePic = '/path/to/default/profile_pic.png';
+        $username = '@defaultUser';
+    }
+
+    $stmt->close();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MessiIsTheGoat - User Profile</title>
-    <link rel="stylesheet" href="/CSS/styles_user_profile.css">
+    <link rel="stylesheet" href="../CSS/styles_user_profile.css">
     <script src="https://kit.fontawesome.com/your-kit-code.js" crossorigin="anonymous"></script>
 </head>
 <body>
