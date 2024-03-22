@@ -16,10 +16,8 @@ $errorMessage = '';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $title = htmlspecialchars($_POST['title']);
     $body = htmlspecialchars($_POST['body']);
-    $userId = $_SESSION['user_id']; // Extract user_id from session
-
-    // Initialize imagePath to null since image is optional
-    $imagePath = null;
+    $userId = $_SESSION['user_id']; // Assuming the user's ID is stored in the session
+    $imagePath = null; // Default to no image
 
     // Validate inputs
     if (empty($title) || empty($body)) {
@@ -27,21 +25,39 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         // Handle file upload if it exists
         if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
-            // Your existing file upload handling logic here
-            // If successful, set $imagePath to the new file path
+            $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+            $maxSize = 5 * 1024 * 1024; // 5MB
+
+            $fileTmpPath = $_FILES['image']['tmp_name'];
+            $fileName = $_FILES['image']['name'];
+            $fileSize = $_FILES['image']['size'];
+            $fileType = $_FILES['image']['type'];
+
+            $fileNameCmps = explode('.', $fileName);
+            $fileExtension = strtolower(end($fileNameCmps));
+
+            if (in_array($fileType, $allowedTypes) && $fileSize <= $maxSize) {
+                $newFileName = md5(time() . $fileName) . '.' . $fileExtension;
+                $destFilePath = 'uploaded_images/' . $newFileName;
+
+                if (move_uploaded_file($fileTmpPath, $destFilePath)) {
+                    $imagePath = $destFilePath;
+                } else {
+                    $errorMessage = 'Error uploading file.';
+                }
+            } else {
+                $errorMessage = 'Invalid file type or size.';
+            }
         }
 
-        // Proceed with the database insertion if there are no errors
         if (empty($errorMessage)) {
             $stmt = $db->prepare("INSERT INTO posts (user_id, title, content, image) VALUES (?, ?, ?, ?)");
             $stmt->bind_param("isss", $userId, $title, $body, $imagePath);
             
-            // Try to execute the statement. If there's a problem, store an error message
-            if (!$stmt->execute()) {
-                $errorMessage = "Error: " . $stmt->error;
-            } else {
-                // Optional: Redirect to a success page or set a success message
+            if ($stmt->execute()) {
                 $errorMessage = "Post successfully created";
+            } else {
+                $errorMessage = "Error: " . $stmt->error;
             }
             $stmt->close();
         }
