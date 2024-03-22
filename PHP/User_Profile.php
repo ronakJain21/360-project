@@ -54,6 +54,10 @@
                 <input type="text" placeholder="Search..." class="search-input">
                 <button class="search-btn"><i class="fa fa-search"></i></button>
             </div>
+            <a href="User_Profile.php" class="nav-link">Welcome, <?php echo htmlspecialchars($username); ?></a>
+            <form action="logout.php" method="POST" style="display: inline;">
+                <button type="submit" class="logout-btn">Logout</button>
+            </form>
             <!-- <a href="#" class="nav-link">Login</a>
             <a href="#" class="nav-button">Register</a> -->
         </nav>
@@ -64,7 +68,7 @@
             <section>
                 <img src="<?php echo htmlspecialchars($userProfilePic); ?>" alt="Profile Pic" class="profile_pic">
                 <h2><?php echo htmlspecialchars($username); ?></h2>
-                <button class="settings"><a href="user_profile_settings.php">Settings</a></button>
+                <button class="settings"><a href="User_Profile_Settings.php">Settings</a></button>
             </section>
 
             <section>

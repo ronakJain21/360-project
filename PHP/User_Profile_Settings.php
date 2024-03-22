@@ -114,7 +114,7 @@ $stmt->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MessiIsTheGoat - Profile Settings</title>
-    <link rel="stylesheet" href="/CSS/styles_user_profile.css">
+    <link rel="stylesheet" href="../CSS/styles_user_profile.css">
     <script src="https://kit.fontawesome.com/your-kit-code.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -131,6 +131,7 @@ $stmt->close();
                 <input type="text" placeholder="Search..." class="search-input">
                 <button class="search-btn"><i class="fa fa-search"></i></button>
             </div>
+            <a href="User_Profile.php" class="nav-link">Welcome, <?php echo htmlspecialchars($username); ?></a>
             <!-- <a href="#" class="nav-link">Login</a>
             <a href="#" class="nav-button">Register</a> -->
         </nav>
