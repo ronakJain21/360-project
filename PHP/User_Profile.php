@@ -17,7 +17,7 @@
     $username = $_SESSION['username'];
 
     // Fetch user information from database
-    $stmt = $db->prepare("SELECT username, profile_pic_blob FROM users WHERE username = ?");
+    $stmt = $db->prepare("SELECT user_id, username, profile_pic_blob FROM users WHERE username = ?");
     $stmt->bind_param("s", $username);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -26,6 +26,7 @@
         $user = $result->fetch_assoc();
         // $userProfilePic = $user['profile_pic'] ?: '/path/to/default/profile_pic.png';
         $username = $user['username'];
+        $userId = $user['user_id']; // Get the user's ID
     } else {
         // Handle case where user data is not found
         $userProfilePic = '/path/to/default/profile_pic.png';
@@ -125,24 +126,36 @@
                     <!-- Display posts -->
                     <?php foreach ($posts as $post): ?>
                         <article class="activities">
-                            <p><strong>Posted:</strong> <?php echo htmlspecialchars($post['title']); ?></p>
-                            <p><strong>Date:</strong> <?php echo $post['timestamp']; ?></p>
+                            <img src="../Pictures/post_icon.webp" alt="Post" class="activities_icon">
+                            <div>
+                                <p class="comment"><i>New Post:</i></p>
+                                <p><?php echo htmlspecialchars($post['title']); ?></p>
+                                <p><strong>Date:</strong> <?php echo $post['timestamp']; ?></p>
+                            </div>
                         </article>
                     <?php endforeach; ?>
 
                     <!-- Display comments -->
                     <?php foreach ($comments as $comment): ?>
                         <article class="activities">
-                            <p><strong>Commented:</strong> <?php echo htmlspecialchars($comment['content']); ?></p>
-                            <p><strong>Date:</strong> <?php echo $comment['timestamp']; ?></p>
+                            <img src="../Pictures/cooment_icon.webp" alt="Comment" class="activities_icon">
+                            <div>
+                                <p class="comment"><i>New Comment:</i></p>
+                                <p><?php echo htmlspecialchars($comment['content']); ?></p>
+                                <p><strong>Date:</strong> <?php echo $comment['timestamp']; ?></p>
+                            </div>
                         </article>
                     <?php endforeach; ?>
 
                     <!-- Display threads -->
                     <?php foreach ($threads as $thread): ?>
                         <article class="activities">
-                            <p><strong>Thread Created:</strong> <?php echo htmlspecialchars($thread['title']); ?></p>
-                            <p><strong>Date:</strong> <?php echo $thread['creation_date']; ?></p>
+                            <img src="../Pictures/threads_icon2.webp" alt="Thread" class="activities_icon"> <!-- Adjust the icon as per your assets -->
+                            <div>
+                                <p class="comment"><i>New Thread:</i></p>
+                                <p><?php echo htmlspecialchars($thread['title']); ?></p>
+                                <p><strong>Date:</strong> <?php echo $thread['creation_date']; ?></p>
+                            </div>
                         </article>
                     <?php endforeach; ?>
                 <?php endif; ?>

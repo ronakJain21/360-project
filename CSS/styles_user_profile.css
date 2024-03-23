@@ -296,6 +296,11 @@ main {
     display: block;
 }
 
+.activity-date {
+    margin-top: 5px; /* Adjust the margin as needed */
+}
+
+
 .comment{
     font: italic;
     color: grey;
