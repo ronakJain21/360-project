@@ -143,12 +143,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQHnhWFBFpqpDEQE_DyEaYEXHwa8QY4mAsBTeZaif0XvmL1sXI2" alt="MessiIsTheGoat Logo" class="logo-image">
                 <div class="logo-title">MessiIsTheGoat</div>
             </div>
-            <a href="#" class="nav-link">Home</a>
+            <a href="Index.php" class="nav-link">Home</a>
             <!-- <a href="#" class="nav-link">Categories</a> -->
-            <div class="search-container">
+            <!-- <div class="search-container">
                 <input type="text" placeholder="Search..." class="search-input">
                 <button class="search-btn"><i class="fa fa-search"></i></button>
-            </div>
+            </div> -->
             <a href="User_Profile.php" class="nav-link">Welcome, <?php echo htmlspecialchars($username); ?></a>
             <form action="logout.php" method="POST" style="display: inline;">
                 <button type="submit" class="logout-btn">Logout</button>
@@ -170,8 +170,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <section>
                 <h3>Menu</h3>
                 <ul>
-                    <li><a href="#"><img src="../Pictures/home_icon.webp" alt="Navigate to Home" class="menubar_icon">Home</a></li>
-                    <li><a href="#"><img src="../Pictures/admin_icon.webp" alt="Navigate to Admin" class="menubar_icon">Admin Portal</a></li>
+                    <li><a href="Index.php"><img src="../Pictures/home_icon.webp" alt="Navigate to Home" class="menubar_icon">Home</a></li>
+                    <li><a href="adminPage.php"><img src="../Pictures/admin_icon.webp" alt="Navigate to Admin" class="menubar_icon">Admin Portal</a></li>
                     <li><a href="#"><img src="../Pictures/threads_icon2.webp" alt="Navigate to Threads" class="menubar_icon">Threads</a></li>
                     <li><a href="User_Profile_Settings.php"><img src="../Pictures/settings_icon.png" alt="Navigate to Settings" class="menubar_icon">Settings</a></li>
 

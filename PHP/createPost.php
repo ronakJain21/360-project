@@ -41,7 +41,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt->bind_param("iissi", $userId, $threadId, $title, $body, $categoryId);
 
             if ($stmt->execute()) {
-                $errorMessage = "Post successfully created";
+                // Redirect to Index.php after successful post creation
+                header('Location: Index.php');
+                exit();
             } else {
                 $errorMessage = "Error: " . $stmt->error;
             }
@@ -65,10 +67,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <nav class="navbar">
             <div class="logo">MessiIsTheGoat</div>
             <div class="nav-links">
-                <a href="#">Home</a>
-                <a href="#">Categories</a>
+                <a href="Index.php">Home</a>
+                <!-- <a href="#">Categories</a>
                 <a href="#">Login</a>
-                <a href="#">Register</a>
+                <a href="#">Register</a> -->
             </div>
             <form action="logout.php" method="POST" style="display: inline;">
                 <button type="submit" class="logout-btn">Logout</button>

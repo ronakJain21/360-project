@@ -33,6 +33,27 @@
     }
 
     $stmt->close();
+
+    // Fetch user's posts
+    $postsStmt = $db->prepare("SELECT title, timestamp FROM posts WHERE user_id = ?");
+    $postsStmt->bind_param("i", $userId);
+    $postsStmt->execute();
+    $posts = $postsStmt->get_result()->fetch_all(MYSQLI_ASSOC);
+    $postsStmt->close();
+
+    // Fetch user's comments
+    $commentsStmt = $db->prepare("SELECT content, timestamp FROM comments WHERE user_id = ?");
+    $commentsStmt->bind_param("i", $userId);
+    $commentsStmt->execute();
+    $comments = $commentsStmt->get_result()->fetch_all(MYSQLI_ASSOC);
+    $commentsStmt->close();
+
+    // Fetch user's threads
+    $threadsStmt = $db->prepare("SELECT title, creation_date FROM threads WHERE user_id = ?");
+    $threadsStmt->bind_param("i", $userId);
+    $threadsStmt->execute();
+    $threads = $threadsStmt->get_result()->fetch_all(MYSQLI_ASSOC);
+    $threadsStmt->close();
 ?>
 
 <!DOCTYPE html>
@@ -51,12 +72,12 @@
                 <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQHnhWFBFpqpDEQE_DyEaYEXHwa8QY4mAsBTeZaif0XvmL1sXI2" alt="MessiIsTheGoat Logo" class="logo-image">
                 <div class="logo-title">MessiIsTheGoat</div>
             </div>
-            <a href="#" class="nav-link">Home</a>
+            <a href="Index.php" class="nav-link">Home</a>
             <!-- <a href="#" class="nav-link">Categories</a> -->
-            <div class="search-container">
+            <!-- <div class="search-container">
                 <input type="text" placeholder="Search..." class="search-input">
                 <button class="search-btn"><i class="fa fa-search"></i></button>
-            </div>
+            </div> -->
             <a href="User_Profile.php" class="nav-link">Welcome, <?php echo htmlspecialchars($username); ?></a>
             <form action="logout.php" method="POST" style="display: inline;">
                 <button type="submit" class="logout-btn">Logout</button>
@@ -77,8 +98,8 @@
             <section>
                 <h3>Menu</h3>
                 <ul>
-                    <li><a href="#"><img src="../Pictures/home_icon.webp" alt="Navigate to Home" class="menubar_icon">Home</a></li>
-                    <li><a href="#"><img src="../Pictures/admin_icon.webp" alt="Navigate to Admin" class="menubar_icon">Admin Portal</a></li>
+                    <li><a href="Index.php"><img src="../Pictures/home_icon.webp" alt="Navigate to Home" class="menubar_icon">Home</a></li>
+                    <li><a href="adminPage.php"><img src="../Pictures/admin_icon.webp" alt="Navigate to Admin" class="menubar_icon">Admin Portal</a></li>
                     <li><a href="#"><img src="../Pictures/threads_icon2.webp" alt="Navigate to Threads" class="menubar_icon">Threads</a></li>
                     <li><a href="User_Profile_Settings.php"><img src="../Pictures/settings_icon.png" alt="Navigate to Settings" class="menubar_icon">Settings</a></li>
                 </ul>
@@ -98,28 +119,33 @@
             <section class="profile_activity">
                 <h3>Profile Activity</h3>
                 <hr>
-                <?php
-                // Assume $userActivities is an array containing the user's activities
-                $userActivities = []; // Example: array(array("type" => "comment", "content" => "New comment!"))
+                <?php if (empty($posts) && empty($comments) && empty($threads)): ?>
+                    <p>No activities to display.</p>
+                <?php else: ?>
+                    <!-- Display posts -->
+                    <?php foreach ($posts as $post): ?>
+                        <article class="activities">
+                            <p><strong>Posted:</strong> <?php echo htmlspecialchars($post['title']); ?></p>
+                            <p><strong>Date:</strong> <?php echo $post['timestamp']; ?></p>
+                        </article>
+                    <?php endforeach; ?>
 
-                if (empty($userActivities)) {
-                    echo "<p>No activities to display.</p>";
-                } else {
-                    foreach ($userActivities as $activity) {
-                        $activityType = $activity['type']; // 'comment' or 'post'
-                        $activityContent = $activity['content'];
-                        $activityIcon = $activityType == 'comment' ? "/Pictures/comment_icon.webp" : "/Pictures/post_icon.webp";
-                        
-                        echo "<article class=\"activities\">";
-                        echo "<img src=\"$activityIcon\" alt=\"Activity\" class=\"activities_icon\">";
-                        echo "<div>";
-                        echo "<p class=\"comment\"><i>New " . ucfirst($activityType) . ":</i></p>";
-                        echo "<p>$activityContent</p>";
-                        echo "</div>";
-                        echo "</article>";
-                    }
-                }
-                ?>
+                    <!-- Display comments -->
+                    <?php foreach ($comments as $comment): ?>
+                        <article class="activities">
+                            <p><strong>Commented:</strong> <?php echo htmlspecialchars($comment['content']); ?></p>
+                            <p><strong>Date:</strong> <?php echo $comment['timestamp']; ?></p>
+                        </article>
+                    <?php endforeach; ?>
+
+                    <!-- Display threads -->
+                    <?php foreach ($threads as $thread): ?>
+                        <article class="activities">
+                            <p><strong>Thread Created:</strong> <?php echo htmlspecialchars($thread['title']); ?></p>
+                            <p><strong>Date:</strong> <?php echo $thread['creation_date']; ?></p>
+                        </article>
+                    <?php endforeach; ?>
+                <?php endif; ?>
             </section>
         </main>
     </div>

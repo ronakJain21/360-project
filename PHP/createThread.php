@@ -44,7 +44,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt->bind_param("isss", $userId, $title, $body, $category_id);
 
             if ($stmt->execute()) {
-                echo "Thread successfully created";
+                header('Location: Index.php');
+                exit();
             } else {
                 $errorMessage = "Error: " . $db->error;
             }
