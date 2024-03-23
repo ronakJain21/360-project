@@ -100,12 +100,13 @@ include 'fetch_recent_posts.php'; // Retrieves the most recent posts
         </article>
     <?php endforeach; ?>
 </div> 
-        </main>
+    </main>
         <aside class="sidebar">
             <!-- Top Threads Section -->
             <section class="top-threads">
                 <h3>Top Threads</h3>
                 <ul>
+                
                     <?php foreach ($topThreads as $thread): ?>
                         <li><a href="thread.php?thread_id=<?php echo htmlspecialchars($thread['thread_id']); ?>"><?php echo htmlspecialchars($thread['title']); ?></a></li>
                     <?php endforeach; ?>
