@@ -1,0 +1,106 @@
+<?php
+    ini_set('display_errors', 1);
+    error_reporting(E_ALL);
+    include 'login_status.php'; // Handles user login status and checks for admin
+
+    // Retrieve threads table
+    $sql = "SELECT * FROM threads JOIN users ON threads.user_id = users.user_id;";
+    $result = $db->query($sql);
+    $thread_id = [];
+    $threadName = [];
+    $threadCreationDate = [];
+    $owner = [];
+    while ($row = $result->fetch_assoc()) {
+        $thread_id[] = $row["thread_id"];
+        $threadName[] = $row["title"];
+        $threadCreationDate[] = $row["creation_date"];
+        //$owner[] = $row["users.username"];
+    }
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Threads - Admin Dashboard - MessiIsTheGoat</title>
+    <link rel="stylesheet" href="../CSS/stylesadmin2.css">
+</head>
+<body>
+    <div class="admin-container">
+        <aside class="admin-sidebar">
+            <div class="logo-container">
+                <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQHnhWFBFpqpDEQE_DyEaYEXHwa8QY4mAsBTeZaif0XvmL1sXI2" alt="MessiIsTheGoat Logo" class="logo-image">
+                <div class="logo-title">MessiIsTheGoat</div>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="Homepage.html">Home</a></li>
+                <li><a href="Adminpage.html">Admin Portal</a></li>
+                <li><a href="AdminUser.html">Users</a></li>
+                <li class="active"><a href="#">Threads</a></li>
+            </ul>
+        </aside>
+        <main class="admin-main">
+            <!-- Main content area for threads -->
+            <div class="threads-container">
+                <h1>All Threads</h1>
+                <table class="threads-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>URL</th>
+                            <th>Created</th>
+                            <th>Owner</th>
+                            <th>Status</th>
+                            <th>Members</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Example rows with Messi related content -->
+                        <tr>
+                            <td><?php echo $thread_id[0] ?></td>
+                            <td>Messi's Greatest Goals</td>
+                            <td>/t/messi-goals/</td>
+                            <td>Jan 15, 2024</td>
+                            <td>MessiFan</td>
+                            <td class="status active">Active</td>
+                            <td>300,000</td>
+                            <td>
+                                <button class="action-btn delete-btn">Delete</button>
+                                <button class="action-btn hide-btn">Hide</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><?php echo $thread_id[0] ?></td>
+                            <td>Messi vs. Ronaldo</td>
+                            <td>/t/messi-vs-ronaldo/</td>
+                            <td>Feb 10, 2024</td>
+                            <td>FootballDebate</td>
+                            <td class="status active">Active</td>
+                            <td>450,000</td>
+                            <td>
+                                <button class="delete-btn">Delete</button>
+                                <button class="hide-btn">Hide</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Messi's Philanthropy</td>
+                            <td>/t/messi-charity/</td>
+                            <td>Mar 5, 2024</td>
+                            <td>CharityWatch</td>
+                            <td class="status active">Active</td>
+                            <td>150,000</td>
+                            <td>
+                                <button class="delete-btn">Delete</button>
+                                <button class="hide-btn">Hide</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
