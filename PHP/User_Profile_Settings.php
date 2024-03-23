@@ -144,7 +144,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="logo-title">MessiIsTheGoat</div>
             </div>
             <a href="#" class="nav-link">Home</a>
-            <a href="#" class="nav-link">Categories</a>
+            <!-- <a href="#" class="nav-link">Categories</a> -->
             <div class="search-container">
                 <input type="text" placeholder="Search..." class="search-input">
                 <button class="search-btn"><i class="fa fa-search"></i></button>
@@ -175,6 +175,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <li><a href="#"><img src="../Pictures/threads_icon2.webp" alt="Navigate to Threads" class="menubar_icon">Threads</a></li>
                     <li><a href="User_Profile_Settings.php"><img src="../Pictures/settings_icon.png" alt="Navigate to Settings" class="menubar_icon">Settings</a></li>
 
+                </ul>
+            </section>
+
+            <section>
+                <h3>Categories</h3>
+                <ul>
+                    <li><a href="#">WeLoveMessi</a></li>
+                    <li><a href="#">MESSIGOATArgument</a></li>
+                    <li><a href="#">WhyMessitheGOAT</a></li>
                 </ul>
             </section>
         </aside>
