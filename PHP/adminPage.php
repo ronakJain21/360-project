@@ -35,10 +35,10 @@
             <!-- Sidebar navigation -->
             <h2 class="sidebar-title">MENU</h2>
             <ul class="sidebar-menu">
-                <li><a href="Homepage.html">Home</a></li>
+                <li><a href="Index.php">Home</a></li>
                 <li class="active"><a href="#">Admin Portal</a></li>
-                <li><a href="AdminUser.html">Users</a></li>
-                <li><a href="Adminthreadpage.html">Threads</a></li>
+                <li><a href="AdminUser.php">Users</a></li>
+                <li><a href="#">Threads</a></li>
             </ul>
         </aside>
         <main class="admin-main">
