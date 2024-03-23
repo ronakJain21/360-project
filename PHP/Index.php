@@ -135,6 +135,7 @@ include 'fetch_recent_posts.php'; // Retrieves the most recent posts
     
         <script>
     $(document).ready(function() {
+        // Event handler for adding comments
         $('.comment-btn').click(function() {
             var form = $(this).closest('form');
             var postData = form.serialize();
@@ -151,12 +152,89 @@ include 'fetch_recent_posts.php'; // Retrieves the most recent posts
                             <p>${form.find('[name="comment"]').val()}</p>
                         </div>`;
                         commentsSection.append(newComment);
-                        form.find('[name="comment"]').val(''); // Clear the input after posting
+                        form.find('[name="comment"]').val('');
+                    } else {
+                        alert(response);
                     }
                 }
             });
         });
+
+        // Event handler for voting buttons
+        $('body').on('click', '.vote-btn', function() {
+            var postId = $(this).data('post');
+            var voteType = $(this).hasClass('upvote-btn') ? 1 : -1;
+            vote(postId, voteType);
+        });
+
+        // Event handler for deleting posts
+        $('body').on('click', '.delete-post-btn', function() {
+            var postId = $(this).data('post');
+            deletePost(postId);
+        });
+
+        // Event handler for deleting comments
+        $('body').on('click', '.delete-comment-btn', function() {
+            var commentId = $(this).data('comment');
+            deleteComment(commentId);
+        });
     });
+
+    function vote(postId, voteType) {
+        $.ajax({
+            type: 'POST',
+            url: 'vote_handler.php',
+            data: { post_id: postId, vote_type: voteType },
+            dataType: 'json',
+            success: function(response) {
+                if (response.logged_in && response.message === "Vote successfully recorded.") {
+                    $('#vote-count-' + postId).text(response.new_count);
+                    reorderPosts();
+                } else {
+                    alert(response.message);
+                }
+            },
+            error: function(xhr, status, error) {
+                alert('An error occurred while processing your vote.');
+            }
+        });
+    }
+
+    function deletePost(postId) {
+        if (confirm('Are you sure you want to delete this post?')) {
+            $.ajax({
+                type: 'POST',
+                url: 'delete_post.php',
+                data: { post_id: postId },
+                success: function(response) {
+                    if (response === 'Post deleted.') {
+                        $('#post-' + postId).fadeOut(500, function() { $(this).remove(); });
+                        reorderPosts();
+                    } else {
+                        alert('Error: ' + response);
+                    }
+                }
+            });
+        }
+    }
+
+    function deleteComment(commentId) {
+        if (confirm('Are you sure you want to delete this comment?')) {
+            $.ajax({
+                type: 'POST',
+                url: 'delete_comment.php',
+                data: { comment_id: commentId },
+                success: function(response) {
+                    if (response === 'Comment deleted.') {
+                        $('.comment-' + commentId).fadeOut(500, function() { $(this).remove(); });
+                    } else {
+                        alert('Error: ' + response);
+                    }
+                }
+            });
+        }
+    }
+
     function reorderPosts() {
         let posts = $('.post').get();
         posts.sort((a, b) => {
@@ -166,48 +244,6 @@ include 'fetch_recent_posts.php'; // Retrieves the most recent posts
         });
         $('#posts-container').empty().append(posts);
     }
-
-    $(document).ready(function() {
-        $('.vote-btn').click(function() {
-            var postId = $(this).data('post');
-            var voteType = $(this).hasClass('upvote-btn') ? 1 : -1;
-            vote(postId, voteType);
-        });
-    });
-    function deletePost(postId) {
-    if (confirm('Are you sure you want to delete this post?')) {
-        $.ajax({
-            type: 'POST',
-            url: 'delete_post.php', // This PHP file handles deleting posts
-            data: { post_id: postId },
-            success: function(response) {
-                if (response === 'Post deleted.') {
-                    $('#post-' + postId).remove(); // Remove the post from the page
-                } else {
-                    alert('Error: ' + response);
-                }
-            }
-        });
-    }
-}
-
-function deleteComment(commentId) {
-    if (confirm('Are you sure you want to delete this comment?')) {
-        $.ajax({
-            type: 'POST',
-            url: 'delete_comment.php', // This PHP file handles deleting comments
-            data: { comment_id: commentId },
-            success: function(response) {
-                if (response === 'Comment deleted.') {
-                    $('.comment-' + commentId).remove(); // Remove the comment from the page
-                } else {
-                    alert('Error: ' + response);
-                }
-            }
-        });
-    }
-}
-        </script>
-    </body>
-    </html>
-    
+</script>
+</body>
+</html>
