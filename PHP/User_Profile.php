@@ -17,14 +17,14 @@
     $username = $_SESSION['username'];
 
     // Fetch user information from database
-    $stmt = $db->prepare("SELECT username, profile_pic FROM users WHERE username = ?");
+    $stmt = $db->prepare("SELECT username, profile_pic_blob FROM users WHERE username = ?");
     $stmt->bind_param("s", $username);
     $stmt->execute();
     $result = $stmt->get_result();
 
     if ($result->num_rows > 0) {
         $user = $result->fetch_assoc();
-        $userProfilePic = $user['profile_pic'] ?: '/path/to/default/profile_pic.png';
+        // $userProfilePic = $user['profile_pic'] ?: '/path/to/default/profile_pic.png';
         $username = $user['username'];
     } else {
         // Handle case where user data is not found
@@ -52,7 +52,7 @@
                 <div class="logo-title">MessiIsTheGoat</div>
             </div>
             <a href="#" class="nav-link">Home</a>
-            <a href="#" class="nav-link">Categories</a>
+            <!-- <a href="#" class="nav-link">Categories</a> -->
             <div class="search-container">
                 <input type="text" placeholder="Search..." class="search-input">
                 <button class="search-btn"><i class="fa fa-search"></i></button>
@@ -69,7 +69,7 @@
     <div class="container">
         <aside class="menubar">
             <section>
-                <img src="<?php echo htmlspecialchars($userProfilePic); ?>" alt="Profile Pic" class="profile_pic">
+                <img src="user_image.php" alt="Profile Pic" class="profile_pic">
                 <h2><?php echo htmlspecialchars($username); ?></h2>
                 <button class="settings"><a href="User_Profile_Settings.php">Settings</a></button>
             </section>
@@ -80,6 +80,16 @@
                     <li><a href="#"><img src="../Pictures/home_icon.webp" alt="Navigate to Home" class="menubar_icon">Home</a></li>
                     <li><a href="#"><img src="../Pictures/admin_icon.webp" alt="Navigate to Admin" class="menubar_icon">Admin Portal</a></li>
                     <li><a href="#"><img src="../Pictures/threads_icon2.webp" alt="Navigate to Threads" class="menubar_icon">Threads</a></li>
+                    <li><a href="User_Profile_Settings.php"><img src="../Pictures/settings_icon.png" alt="Navigate to Settings" class="menubar_icon">Settings</a></li>
+                </ul>
+            </section>
+
+            <section>
+                <h3>Categories</h3>
+                <ul>
+                    <li><a href="#">WeLoveMessi</a></li>
+                    <li><a href="#">MESSIGOATArgument</a></li>
+                    <li><a href="#">WhyMessitheGOAT</a></li>
                 </ul>
             </section>
         </aside>

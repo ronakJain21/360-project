@@ -10,14 +10,14 @@ if (!isset($_SESSION['username'])) {
 $username = $_SESSION['username'];
 
 // Fetch user information
-$stmt = $db->prepare("SELECT username, profile_pic FROM users WHERE username = ?");
+$stmt = $db->prepare("SELECT username, profile_pic_blob FROM users WHERE username = ?");
 $stmt->bind_param("s", $username);
 $stmt->execute();
 $result = $stmt->get_result();
 
 if ($result->num_rows > 0) {
     $user = $result->fetch_assoc();
-    $currentUserProfilePic = $user['profile_pic'] ?: '/path/to/default/profile_pic.png';
+    $currentUserProfilePic = $user['profile_pic_blob'] ?: '/path/to/default/profile_pic.png';
     $currentUsername = $user['username'];
 } else {
     // Handle error or redirect
@@ -30,29 +30,49 @@ $profilePicError = $usernameError = $passwordError = $successMessage = '';
 // Process POST requests
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Update profile picture
-    if (isset($_FILES['new_profile_pic'])) {
+    // if (isset($_FILES['new_profile_pic'])) {
+    //     $file = $_FILES['new_profile_pic'];
+    //     if ($file['error'] === UPLOAD_ERR_OK) {
+    //         $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+    //         if (in_array($file['type'], $allowedTypes) && $file['size'] < 5000000) { // 5MB limit
+    //             $uploadDir = __DIR__ . '/uploaded_images/';
+    //             $fileName = basename($file['name']);
+    //             $targetPath = $uploadDir . $fileName;
+    //             if (move_uploaded_file($file['tmp_name'], $targetPath)) {
+    //                 // Update database with new profile picture path
+    //                 $stmt = $db->prepare("UPDATE users SET profile_pic = ? WHERE username = ?");
+    //                 $stmt->bind_param("ss", $targetPath, $username);
+    //                 $stmt->execute();
+    //                 $stmt->close();
+    //                 $successMessage = "Profile picture updated successfully.";
+    //             } else {
+    //                 $profilePicError = "Failed to upload file.";
+    //             }
+    //         } else {
+    //             $profilePicError = "Invalid file type or size.";
+    //         }
+    //     } else {
+    //         $profilePicError = "Error uploading file.";
+    //     }
+    // }
+
+    // Update profile picture
+    if (isset($_FILES['new_profile_pic']) && $_FILES['new_profile_pic']['error'] === UPLOAD_ERR_OK) {
         $file = $_FILES['new_profile_pic'];
-        if ($file['error'] === UPLOAD_ERR_OK) {
-            $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
-            if (in_array($file['type'], $allowedTypes) && $file['size'] < 5000000) { // 5MB limit
-                $uploadDir = __DIR__ . '/uploaded_images/';
-                $fileName = basename($file['name']);
-                $targetPath = $uploadDir . $fileName;
-                if (move_uploaded_file($file['tmp_name'], $targetPath)) {
-                    // Update database with new profile picture path
-                    $stmt = $db->prepare("UPDATE users SET profile_pic = ? WHERE username = ?");
-                    $stmt->bind_param("ss", $targetPath, $username);
-                    $stmt->execute();
-                    $stmt->close();
-                    $successMessage = "Profile picture updated successfully.";
-                } else {
-                    $profilePicError = "Failed to upload file.";
-                }
-            } else {
-                $profilePicError = "Invalid file type or size.";
-            }
+        $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+        
+        if (in_array($file['type'], $allowedTypes) && $file['size'] < 5000000) { // 5MB limit
+            $fileData = file_get_contents($file['tmp_name']);
+            $fileType = $file['type'];
+    
+            $stmt = $db->prepare("UPDATE users SET profile_pic_blob = ?, profile_pic_type = ? WHERE username = ?");
+            $stmt->bind_param("bss", $null, $fileType, $username);
+            $stmt->send_long_data(0, $fileData);
+            $stmt->execute();
+            $stmt->close();
+            $successMessage = "Profile picture updated successfully.";
         } else {
-            $profilePicError = "Error uploading file.";
+            $profilePicError = "Invalid file type or size.";
         }
     }
 
@@ -124,7 +144,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="logo-title">MessiIsTheGoat</div>
             </div>
             <a href="#" class="nav-link">Home</a>
-            <a href="#" class="nav-link">Categories</a>
+            <!-- <a href="#" class="nav-link">Categories</a> -->
             <div class="search-container">
                 <input type="text" placeholder="Search..." class="search-input">
                 <button class="search-btn"><i class="fa fa-search"></i></button>
@@ -142,7 +162,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <aside class="menubar">
             <!-- User Menu Content -->
             <section>
-                <img src="<?php echo htmlspecialchars($currentUserProfilePic); ?>" alt="Profile Pic" class="profile_pic">
+                <img src="user_image.php" alt="Profile Pic" class="profile_pic">
                 <h2><?php echo htmlspecialchars($username); ?></h2>
                 <button class="settings"><a href="User_Profile_Settings.php">Settings</a></button>
             </section>
@@ -153,6 +173,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <li><a href="#"><img src="../Pictures/home_icon.webp" alt="Navigate to Home" class="menubar_icon">Home</a></li>
                     <li><a href="#"><img src="../Pictures/admin_icon.webp" alt="Navigate to Admin" class="menubar_icon">Admin Portal</a></li>
                     <li><a href="#"><img src="../Pictures/threads_icon2.webp" alt="Navigate to Threads" class="menubar_icon">Threads</a></li>
+                    <li><a href="User_Profile_Settings.php"><img src="../Pictures/settings_icon.png" alt="Navigate to Settings" class="menubar_icon">Settings</a></li>
+
+                </ul>
+            </section>
+
+            <section>
+                <h3>Categories</h3>
+                <ul>
+                    <li><a href="#">WeLoveMessi</a></li>
+                    <li><a href="#">MESSIGOATArgument</a></li>
+                    <li><a href="#">WhyMessitheGOAT</a></li>
                 </ul>
             </section>
         </aside>
@@ -162,7 +193,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <form action="user_profile_settings.php" method="post" enctype="multipart/form-data">
                     <!-- Profile Picture Update Section -->
                     <h4>Change Profile Picture:</h4>
-                    <img src="<?php echo htmlspecialchars($currentUserProfilePic); ?>" alt="Profile Pic" class="profile_pic_small"><br><br>
+                    <img src="user_image.php" alt="Profile Pic" class="profile_pic_small"><br><br>
                     <input type="file" name="new_profile_pic">
                     <?php if ($profilePicError): ?>
                         <p class="error"><?php echo $profilePicError; ?></p>

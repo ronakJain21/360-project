@@ -8,17 +8,18 @@ include 'config.php'; // Ensure this path is correct
 $usernameError = $emailError = $passwordError = $confirmPasswordError = $profilePicError = $generalError = '';
 $username = $email = '';
 
-$uploadFileDir = __DIR__ . '/uploaded_images/';
-if (!file_exists($uploadFileDir)) {
-    mkdir($uploadFileDir, 0755, true);
-}
+// $uploadFileDir = __DIR__ . '/uploaded_images/';
+// if (!file_exists($uploadFileDir)) {
+//     mkdir($uploadFileDir, 0755, true);
+// }
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = trim(htmlspecialchars($_POST['username']));
     $email = trim(htmlspecialchars($_POST['email']));
     $password = $_POST['password'];
     $confirmPassword = $_POST['confirm_password'];
-    $destFilePath = '';
+    // $destFilePath = '';
 
     if (empty($username)) {
         $usernameError = "Please enter a username.";
@@ -57,33 +58,57 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $confirmPasswordError = "Passwords do not match.";
     }
 
-    if (isset($_FILES['profile_pic']) && $_FILES['profile_pic']['size'] > 0) {
+    $profilePicBlob = NULL;
+    if (isset($_FILES['profile_pic_blob']) && $_FILES['profile_pic_blob']['size'] > 0) {
         $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
         $maxSize = 5 * 1024 * 1024; 
 
-        $fileTmpPath = $_FILES['profile_pic']['tmp_name'];
-        $fileName = $_FILES['profile_pic']['name'];
-        $fileSize = $_FILES['profile_pic']['size'];
-        $fileType = $_FILES['profile_pic']['type'];
-        $fileNameCmps = explode('.', $fileName);
-        $fileExtension = strtolower(end($fileNameCmps));
+        // $fileTmpPath = $_FILES['profile_pic']['tmp_name'];
+        // $fileName = $_FILES['profile_pic']['name'];
+        // $fileSize = $_FILES['profile_pic']['size'];
+        // $fileType = $_FILES['profile_pic']['type'];
+        // $fileNameCmps = explode('.', $fileName);
+        // $fileExtension = strtolower(end($fileNameCmps));
 
-        if (!in_array($fileType, $allowedTypes) || $fileSize > $maxSize) {
-            $profilePicError = 'Invalid file type or size.';
+        $fileTmpPath = $_FILES['profile_pic_blob']['tmp_name'];
+        $fileSize = $_FILES['profile_pic_blob']['size'];
+        $fileType = $_FILES['profile_pic_blob']['type'];
+
+        if (in_array($fileType, $allowedTypes) && $fileSize <= $maxSize) {
+            $profilePicBlob = file_get_contents($fileTmpPath);
         } else {
-            $newFileName = md5(time() . $fileName) . '.' . $fileExtension;
-            $destFilePath = $uploadFileDir . $newFileName;
-
-            if (!move_uploaded_file($fileTmpPath, $destFilePath)) {
-                $profilePicError = 'Error uploading file.';
-            }
+            $profilePicError = 'Invalid file type or size.';
         }
+
+        // if (!in_array($fileType, $allowedTypes) || $fileSize > $maxSize) {
+        //     $profilePicError = 'Invalid file type or size.';
+        // } else {
+        //     $newFileName = md5(time() . $fileName) . '.' . $fileExtension;
+        //     $destFilePath = $uploadFileDir . $newFileName;
+
+        //     if (!move_uploaded_file($fileTmpPath, $destFilePath)) {
+        //         $profilePicError = 'Error uploading file.';
+        //     }
+        // }
     }
     
     if (empty($usernameError) && empty($emailError) && empty($passwordError) && empty($confirmPasswordError)) {
-        $stmt = $db->prepare("INSERT INTO users (username, email, password, profile_pic, status) VALUES (?, ?, ?, ?, 'active')");
+        // $stmt = $db->prepare("INSERT INTO users (username, email, password, profile_pic, status) VALUES (?, ?, ?, ?, 'active')");
+        // $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+        // $stmt->bind_param("ssss", $username, $email, $passwordHash, $destFilePath);
+
+        $stmt = $db->prepare("INSERT INTO users (username, email, password, profile_pic_blob, status) VALUES (?, ?, ?, ?, 'active')");
         $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-        $stmt->bind_param("ssss", $username, $email, $passwordHash, $destFilePath);
+
+        // If there is no uploaded profile picture, bind NULL to the blob column
+        if (is_null($profilePicBlob)) {
+            $stmt->bind_param("ssss", $username, $email, $passwordHash, $profilePicBlob);
+        } else {
+            // When there is a profile picture, send the data as a blob
+            $null = NULL;
+            $stmt->bind_param("sssb", $username, $email, $passwordHash, $null);
+            $stmt->send_long_data(3, $profilePicBlob);
+        }
 
         if ($stmt->execute()) {
             header('Location: Login.php');
