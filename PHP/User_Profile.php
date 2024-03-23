@@ -17,14 +17,14 @@
     $username = $_SESSION['username'];
 
     // Fetch user information from database
-    $stmt = $db->prepare("SELECT username, profile_pic FROM users WHERE username = ?");
+    $stmt = $db->prepare("SELECT username, profile_pic_blob FROM users WHERE username = ?");
     $stmt->bind_param("s", $username);
     $stmt->execute();
     $result = $stmt->get_result();
 
     if ($result->num_rows > 0) {
         $user = $result->fetch_assoc();
-        $userProfilePic = $user['profile_pic'] ?: '/path/to/default/profile_pic.png';
+        // $userProfilePic = $user['profile_pic'] ?: '/path/to/default/profile_pic.png';
         $username = $user['username'];
     } else {
         // Handle case where user data is not found
@@ -69,7 +69,7 @@
     <div class="container">
         <aside class="menubar">
             <section>
-                <img src="<?php echo htmlspecialchars($userProfilePic); ?>" alt="Profile Pic" class="profile_pic">
+                <img src="user_image.php" alt="Profile Pic" class="profile_pic">
                 <h2><?php echo htmlspecialchars($username); ?></h2>
                 <button class="settings"><a href="User_Profile_Settings.php">Settings</a></button>
             </section>
