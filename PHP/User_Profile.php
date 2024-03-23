@@ -35,6 +35,14 @@
     $stmt->close();
 ?>
 
+<!-- <script>
+    document.querySelector('.dropbtn').addEventListener('click', function(event) {
+        event.preventDefault();
+        document.querySelector('.dropdown-content').style.display = 'block';
+    });
+</script> -->
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,6 +60,14 @@
                 <div class="logo-title">MessiIsTheGoat</div>
             </div>
             <a href="#" class="nav-link">Home</a>
+            <!-- <div class="dropdown">
+                <a href="#" class="nav-link dropbtn">Categories</a>
+                <div class="dropdown-content">
+                    <a href="#">WeLoveMESSI</a>
+                    <a href="#">MESSIGOATArgument</a>
+                    <a href="#">WhyMessitheGOAT</a>
+                </div>
+            </div> -->
             <a href="#" class="nav-link">Categories</a>
             <div class="search-container">
                 <input type="text" placeholder="Search..." class="search-input">
@@ -80,6 +96,7 @@
                     <li><a href="#"><img src="../Pictures/home_icon.webp" alt="Navigate to Home" class="menubar_icon">Home</a></li>
                     <li><a href="#"><img src="../Pictures/admin_icon.webp" alt="Navigate to Admin" class="menubar_icon">Admin Portal</a></li>
                     <li><a href="#"><img src="../Pictures/threads_icon2.webp" alt="Navigate to Threads" class="menubar_icon">Threads</a></li>
+                    <li><a href="User_Profile_Settings.php"><img src="../Pictures/settings_icon.png" alt="Navigate to Settings" class="menubar_icon">Settings</a></li>
                 </ul>
             </section>
         </aside>
