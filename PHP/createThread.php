@@ -69,9 +69,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="logo">MessiIsTheGoat</div>
             <div class="nav-links">
                 <a href="#">Home</a>
-                <a href="#">Categories</a>
+                <!-- <a href="#">Categories</a>
                 <a href="#">Login</a>
-                <a href="#">Register</a>
+                <a href="#">Register</a> -->
             </div>
             <form action="logout.php" method="POST" style="display: inline;">
                 <button type="submit" class="logout-btn">Logout</button>
