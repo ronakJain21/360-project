@@ -1,18 +1,64 @@
+/* Search Results Styling */
+#search-results {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#search-results h2 {
+    color: #004d98;
+    border-bottom: 2px solid #004d98;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+#search-results h3 {
+    color: #a50044;
+    margin: 20px 0 10px;
+}
+
+.search-item {
+    padding: 10px;
+    border-bottom: 1px solid #eaeaea;
+    margin-bottom: 10px;
+}
+
+.search-item:last-child {
+    border-bottom: none;
+}
+
+.search-item h4 {
+    margin: 0;
+    color: #004d98;
+    font-size: 18px;
+}
+
+.search-item p {
+    margin: 5px 0 0;
+    color: #333;
+}
+
+/* General Body Styles */
 body {
     font-family: Arial, sans-serif;
     background: #f4f4f4;
+    margin: 0;
 }
 
+/* Header Styles */
 header {
     background: #004d98; /* Barcelona Blue */
     color: white;
+    padding: 10px 5%;
 }
 
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 5px;
 }
 
 .logo-container {
@@ -25,27 +71,23 @@ header {
 }
 
 .logo-title {
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 24px;
     margin-left: 10px;
+    font-size: 24px;
 }
 
 .nav-link, .nav-button {
     color: white;
     text-decoration: none;
-    margin: 0 15px;
     padding: 5px 10px;
-    font-size: 16px;
 }
 
 .nav-link:hover, .nav-button:hover {
-    background-color: #003366; /* Darker blue on hover */
+    background-color: #003366; /* Darker blue */
 }
 
 .search-container {
     display: flex;
     align-items: center;
-    margin: 0 15px;
 }
 
 .search-input {
@@ -68,192 +110,15 @@ header {
     border-radius: 4px;
 }
 
-.container {
-    display: flex;
-    padding: 20px;
-}
-
-main {
-    flex: 3;
-}
-
-.create-post-box, .create-thread-box {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 22px;
-    margin: 20px auto;
-    max-width: 600px;
-    background-color: #fff;
-}
-
-.create-post-input, .create-thread-input {
-    align-items: center;
-    margin-right: 10px;
-}
-
-.create-post-input i, .create-thread-input i {
-    color: #ccc;
-    margin-right: 8px;
-}
-
-.create-post-input input, .create-thread-input input {
-    border: none;
-    outline: none;
-    font-size: 16px;
-    color: #333;
-    cursor: pointer;
-}
-
-.create-post-icons i, .create-thread-icons i {
-    color: #ccc;
-    margin-left: 8px;
-    cursor: pointer;
-}
-
-.create-post-icons i:hover, .create-thread-icons i:hover {
-    color: #007bff;
-}
-
-.posts {
-    margin-right: 20px;
-}
-
-.post {
-    display: flex;
-    align-items: flex-start; /* Align the start of the items */
-    background: white;
-    padding: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    border: 1px solid #ddd;
-    margin: 5px 0;
-}
-.vote {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-right: 20px;
-}
-
-.vote-btn {
-    margin: 5px 0;
-    padding: 5px 10px;
-    border: 1px solid #ccc;
-    background-color: #f9f9f9;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    color: black; /* Default icon color */
-}
-
-.vote-btn:hover, .vote-btn.active {
-    background-color: #4CAF50;
-    color: white;
-}
-
-.upvote-btn:hover, .upvote-btn.active {
-    background-color: #4CAF50;
-    color: white;
-}
-
-.downvote-btn:hover, .downvote-btn.active {
-    background-color: #F44336;
-    color: white;
-}
-
-.vote-count {
-    margin: 5px 0;
-}
-
-.post h2 a {
-    color: #333;
-    text-decoration: none;
-}
-
-.post-info p {
-    color: #777;
-    font-size: 0.9em;
-}
-.post-body {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-}
-
-.comment-section {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    background-color: #f9f9f9;
-    border-top: 1px solid #ddd;
-    margin-top: 20px; /* Space from post content to comment section */
-    width: 100%; /* Ensures comment section spans entire width of the post */
-}
-
-.comment-btn {
-    padding: 8px 16px;
-    background-color: #004d98; /* Barcelona Blue */
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.comment-btn:hover {
-    background-color: #003366; /* A darker shade for hover effect */
-}
-
-.sidebar {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-.sidebar section {
-    margin-bottom: 20px;
-    padding: 10px;
-    background: white;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-.sidebar h3 {
-    margin-top: 0;
-    background: #004d98; /* Barcelona Blue */
-    color: white;
-    padding: 5px 10px;
-}
-
-.sidebar ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.sidebar li a {
-    text-decoration: none;
-    color: #333;
-    display: block;
-    padding: 5px 10px;
-    transition: background-color 0.3s ease;
-}
-
-.sidebar li a:hover {
-    background-color: #f4f4f9; /* Slightly lighter for hover effect */
-}
-
+/* Footer Styles */
 footer {
-    background: #004d98; /* Deeper Barcelona Blue */
+    background: #004d98;
     color: white;
     text-align: center;
-    padding: 10px 20px;
+    padding: 10px;
+    width: 100%;
     position: fixed;
     bottom: 0;
     left: 0;
-    width: 100%;
     z-index: 1000;
 }
-
