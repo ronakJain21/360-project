@@ -4,6 +4,7 @@ error_reporting(E_ALL);
 include 'config.php';
 
 $errorMessage = '';
+$isBlocked = 'false'; // JavaScript understands this as a boolean
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $login = trim(htmlspecialchars($_POST['login']));
@@ -12,19 +13,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($login) || empty($password)) {
         $errorMessage = "Please fill out all fields.";
     } else {
-        $stmt = $db->prepare("SELECT user_id, username, password FROM users WHERE email=? OR username=?");
+        $stmt = $db->prepare("SELECT user_id, username, password, status FROM users WHERE email=? OR username=?");
         $stmt->bind_param("ss", $login, $login);
         $stmt->execute();
         $result = $stmt->get_result();
 
         if ($user = $result->fetch_assoc()) {
             if (password_verify($password, $user['password'])) {
-                session_start();
-                $_SESSION['user_id'] = $user['user_id'];
-                $_SESSION['username'] = $user['username'];
+                if ($user['status'] == 'blocked') {
+                    $isBlocked = 'true';
+                    $errorMessage = "Your account has been blocked. Please contact the admin for more info.";
+                } else {
+                    session_start();
+                    $_SESSION['user_id'] = $user['user_id'];
+                    $_SESSION['username'] = $user['username'];
 
-                header('Location: User_Profile.php');
-                exit();
+                    header('Location: User_Profile.php');
+                    exit();
+                }
             } else {
                 $errorMessage = "Invalid login credentials.";
             }
@@ -45,6 +51,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>MessiIsTheGOAT | Log in</title>
     <link rel="stylesheet" href="../CSS/login_css.css">
     <script>
+                window.onload = function() {
+            var isBlocked = <?php echo $isBlocked; ?>;
+            if (isBlocked) {
+                alert('Your account has been blocked. Please contact the admin for more info.');
+            }
+
         function togglePassword() {
             var x = document.getElementById("password");
             if (x.type === "password") {
