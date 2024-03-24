@@ -44,7 +44,7 @@ include 'fetch_recent_posts.php'; // Retrieves the most recent posts
         </nav>
     </header>
     <div class="container">
-        <main>
+    <main>
             <?php if ($userLoggedIn): ?>
                 <section class="create-post-box" onClick="location.href='createPost.php'">
                     <div class="create-post-input">
@@ -61,50 +61,52 @@ include 'fetch_recent_posts.php'; // Retrieves the most recent posts
             <?php endif; ?>
             <div class="posts" id="posts-container">
             <?php foreach ($posts as $post): ?>
-                <article class="post" id="post-<?php echo htmlspecialchars($post['post_id']); ?>">
-                    <div class="vote">
-                        <!-- Check if user is logged in to display voting buttons -->
-                        <?php if ($userLoggedIn): ?>
-                            <button class="vote-btn upvote-btn" data-post="<?php echo htmlspecialchars($post['post_id']); ?>" onclick="vote(<?php echo htmlspecialchars($post['post_id']); ?>, 1)"><i class="fas fa-arrow-up"></i></button>
-                        <?php endif; ?>
-                        
-                        <!-- Display current vote count -->
-                        <div class="vote-count" id="vote-count-<?php echo htmlspecialchars($post['post_id']); ?>">
-                            <?php echo htmlspecialchars($post['vote_count']); ?>
-                        </div>       
-                        <?php if ($userLoggedIn): ?>
-                            <button class="vote-btn downvote-btn" data-post="<?php echo htmlspecialchars($post['post_id']); ?>" onclick="vote(<?php echo htmlspecialchars($post['post_id']); ?>, -1)"><i class="fas fa-arrow-down"></i></button>
-                        <?php endif; ?>
-                    </div>
-                    <div class="post-info">
-                        <h2><?php echo htmlspecialchars($post['title']); ?></h2>
-                        <p><?php echo htmlspecialchars($post['content']); ?></p>
-                        <!-- Delete Post Button for Admin -->
-                        <?php if ($isAdmin): ?>
-                            <button class="delete-post-btn" onclick="deletePost(<?php echo htmlspecialchars($post['post_id']); ?>)">Delete Post</button>
-                        <?php endif; ?>
-                    </div>
-                    <!-- Comment Section -->
-                    <div class="comments-section">
-                        <?php if ($userLoggedIn): ?>
-                            <form class="comment-form" method="post">
-                                <input type="hidden" name="post_id" value="<?php echo htmlspecialchars($post['post_id']); ?>">
-                                <input type="text" name="comment" placeholder="Add a comment..." class="comment-input">
-                                <button type="button" class="comment-btn">Post Comment</button>
-                            </form>
-                        <?php endif; ?>
-                        <?php foreach ($post['comments'] as $comment): ?>
-                            <div class="comment">
-                                <strong><?php echo htmlspecialchars($comment['username']); ?>:</strong>
-                                <p><?php echo htmlspecialchars($comment['content']); ?></p>
-                                <!-- Delete Comment Button for Admin -->
-                                <?php if ($isAdmin): ?>
-                                    <button class="delete-comment-btn" onclick="deleteComment(<?php echo htmlspecialchars($comment['comment_id']); ?>)">Delete Comment</button>
-                                <?php endif; ?>
-                            </div>
-                        <?php endforeach; ?>
-                    </div>
-                </article>
+                <?php if ($post['is_hidden'] == 0): ?> <!-- Check if post is not hidden -->
+                    <article class="post" id="post-<?php echo htmlspecialchars($post['post_id']); ?>">
+                        <div class="vote">
+                            <!-- Check if user is logged in to display voting buttons -->
+                            <?php if ($userLoggedIn): ?>
+                                <button class="vote-btn upvote-btn" data-post="<?php echo htmlspecialchars($post['post_id']); ?>" onclick="vote(<?php echo htmlspecialchars($post['post_id']); ?>, 1)"><i class="fas fa-arrow-up"></i></button>
+                            <?php endif; ?>
+                            
+                            <!-- Display current vote count -->
+                            <div class="vote-count" id="vote-count-<?php echo htmlspecialchars($post['post_id']); ?>">
+                                <?php echo htmlspecialchars($post['vote_count']); ?>
+                            </div>       
+                            <?php if ($userLoggedIn): ?>
+                                <button class="vote-btn downvote-btn" data-post="<?php echo htmlspecialchars($post['post_id']); ?>" onclick="vote(<?php echo htmlspecialchars($post['post_id']); ?>, -1)"><i class="fas fa-arrow-down"></i></button>
+                            <?php endif; ?>
+                        </div>
+                        <div class="post-info">
+                            <h2><?php echo htmlspecialchars($post['title']); ?></h2>
+                            <p><?php echo htmlspecialchars($post['content']); ?></p>
+                            <!-- Delete Post Button for Admin -->
+                            <?php if ($isAdmin): ?>
+                                <button class="delete-post-btn" onclick="deletePost(<?php echo htmlspecialchars($post['post_id']); ?>)">Delete Post</button>
+                            <?php endif; ?>
+                        </div>
+                        <!-- Comment Section -->
+                        <div class="comments-section">
+                            <?php if ($userLoggedIn): ?>
+                                <form class="comment-form" method="post">
+                                    <input type="hidden" name="post_id" value="<?php echo htmlspecialchars($post['post_id']); ?>">
+                                    <input type="text" name="comment" placeholder="Add a comment..." class="comment-input">
+                                    <button type="button" class="comment-btn">Post Comment</button>
+                                </form>
+                            <?php endif; ?>
+                            <?php foreach ($post['comments'] as $comment): ?>
+                                <div class="comment">
+                                    <strong><?php echo htmlspecialchars($comment['username']); ?>:</strong>
+                                    <p><?php echo htmlspecialchars($comment['content']); ?></p>
+                                    <!-- Delete Comment Button for Admin -->
+                                    <?php if ($isAdmin): ?>
+                                        <button class="delete-comment-btn" onclick="deleteComment(<?php echo htmlspecialchars($comment['comment_id']); ?>)">Delete Comment</button>
+                                    <?php endif; ?>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </article>
+                <?php endif; ?>
             <?php endforeach; ?>
             </div> 
         </main>
@@ -143,51 +145,58 @@ include 'fetch_recent_posts.php'; // Retrieves the most recent posts
         </footer>
     
         <script>
-    $(document).ready(function() {
-        // Event handler for adding comments
-        $('.comment-btn').click(function() {
-            var form = $(this).closest('form');
-            var postData = form.serialize();
-            var commentsSection = form.closest('.comments-section');
+$(document).ready(function() {
+    // Event handler for adding comments
+    $('.comment-btn').click(function() {
+        var form = $(this).closest('form');
+        var postData = form.serialize();
+        var commentsSection = form.closest('.comments-section');
 
-            $.ajax({
-                type: 'POST',
-                url: 'add_comment.php',
-                data: postData,
-                success: function(response) {
-                    if (response === 'Comment added.') {
-                        var newComment = `<div class="comment">
-                            <strong><?php echo htmlspecialchars($_SESSION['username'] ?? 'User'); ?>:</strong>
-                            <p>${form.find('[name="comment"]').val()}</p>
-                        </div>`;
-                        commentsSection.append(newComment);
-                        form.find('[name="comment"]').val('');
-                    } else {
-                        alert(response);
-                    }
+        $.ajax({
+            type: 'POST',
+            url: 'add_comment.php',
+            data: postData,
+            success: function(response) {
+                if (response === 'Comment added.') {
+                    console.log("Comment added successfully!"); // Debugging: Log success message
+                    var newComment = `<div class="comment">
+                        <strong><?php echo htmlspecialchars($_SESSION['username'] ?? 'User'); ?>:</strong>
+                        <p>${form.find('[name="comment"]').val()}</p>
+                    </div>`;
+                    commentsSection.append(newComment);
+                    form.find('[name="comment"]').val('');
+                    window.location.reload();
+                } else {
+                    console.log("Error adding comment:", response); // Debugging: Log error message
+                    alert(response);
                 }
-            });
-        });
-
-        // Event handler for voting buttons
-        $('body').on('click', '.vote-btn', function() {
-            var postId = $(this).data('post');
-            var voteType = $(this).hasClass('upvote-btn') ? 1 : -1;
-            vote(postId, voteType);
-        });
-
-        // Event handler for deleting posts
-        $('body').on('click', '.delete-post-btn', function() {
-            var postId = $(this).data('post');
-            deletePost(postId);
-        });
-
-        // Event handler for deleting comments
-        $('body').on('click', '.delete-comment-btn', function() {
-            var commentId = $(this).data('comment');
-            deleteComment(commentId);
+            },
+            error: function(xhr, status, error) {
+                console.log("AJAX Error:", error); // Debugging: Log AJAX error
+            }
         });
     });
+
+    // Event handler for voting buttons
+    $('body').on('click', '.vote-btn', function() {
+        var postId = $(this).data('post');
+        var voteType = $(this).hasClass('upvote-btn') ? 1 : -1;
+        vote(postId, voteType);
+    });
+
+    // Event handler for deleting posts
+    $('body').on('click', '.delete-post-btn', function() {
+        var postId = $(this).data('post');
+        deletePost(postId);
+    });
+
+    // Event handler for deleting comments
+    $('body').on('click', '.delete-comment-btn', function() {
+        var commentId = $(this).data('comment');
+        deleteComment(commentId);
+    });
+});
+
 
     function vote(postId, voteType) {
         $.ajax({
@@ -209,40 +218,37 @@ include 'fetch_recent_posts.php'; // Retrieves the most recent posts
         });
     }
 
-    function deletePost(postId) {
-        if (confirm('Are you sure you want to delete this post?')) {
-            $.ajax({
-                type: 'POST',
-                url: 'delete_post.php',
-                data: { post_id: postId },
-                success: function(response) {
-                    if (response === 'Post deleted.') {
-                        $('#post-' + postId).fadeOut(500, function() { $(this).remove(); });
-                        reorderPosts();
-                    } else {
-                        alert('Error: ' + response);
-                    }
-                }
-            });
+   function deletePost(postId) {
+    $.ajax({
+        type: 'POST',
+        url: 'delete_post.php',
+        data: { post_id: postId },
+        success: function(response) {
+            if (response === 'Post deleted.') {
+                $('#post-' + postId).fadeOut(500, function() { $(this).remove(); });
+                window.location.reload();
+            } else {
+                console.log('Error: ' + response); // Change from alert to console log
+            }
         }
-    }
+    });
+}
 
-    function deleteComment(commentId) {
-        if (confirm('Are you sure you want to delete this comment?')) {
-            $.ajax({
-                type: 'POST',
-                url: 'delete_comment.php',
-                data: { comment_id: commentId },
-                success: function(response) {
-                    if (response === 'Comment deleted.') {
-                        $('.comment-' + commentId).fadeOut(500, function() { $(this).remove(); });
-                    } else {
-                        alert('Error: ' + response);
-                    }
-                }
-            });
+function deleteComment(commentId) {
+    $.ajax({
+        type: 'POST',
+        url: 'delete_comment.php',
+        data: { comment_id: commentId },
+        success: function(response) {
+            if (response === 'Comment deleted.') {
+                $('#comment-' + commentId).fadeOut(500, function() { $(this).remove(); });
+                window.location.reload();
+            } else {
+                console.log('Error: ' + response); // Change from alert to console log
+            }
         }
-    }
+    });
+}
 
     function reorderPosts() {
         let posts = $('.post').get();

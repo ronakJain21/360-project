@@ -48,7 +48,7 @@ $comments = $commentsResult->num_rows;
                 <li><a href="Index.php">Home</a></li>
                 <li class="active"><a href="AdminDashboard.php">Admin Portal</a></li>
                 <li><a href="AdminUser.php">Users</a></li>
-                <li><a href="AdminThreads.php">Threads</a></li>
+                <li><a href="AdminThreadPage.php">Threads</a></li>
                 <!-- Add more links as needed -->
             </ul>
         </aside>
