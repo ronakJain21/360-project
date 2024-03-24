@@ -24,7 +24,7 @@ include 'fetch_recent_posts.php'; // Retrieves the most recent posts
                 <div class="logo-title">MessiIsTheGoat</div>
             </div>
             <a href="Index.php" class="nav-link">Home</a>
-            <a href="categories.php" class="nav-link">Categories</a>
+            <!-- <a href="categories.php" class="nav-link">Categories</a> -->
             <form action="search.php" method="post" class="search-container">
                 <input type="text" name="search_query" placeholder="Search..." class="search-input">
                 <button type="submit" class="search-btn"><i class="fas fa-search"></i></button>
@@ -125,6 +125,15 @@ include 'fetch_recent_posts.php'; // Retrieves the most recent posts
                     <?php foreach ($recentPosts as $post): ?>
                         <li><a href="User_Profile.php?post_id=<?php echo htmlspecialchars($post['post_id']); ?>"><?php echo htmlspecialchars($post['title']); ?></a></li>
                     <?php endforeach; ?>
+                </ul>
+            </section>
+
+            <section>
+                <h3>Categories</h3>
+                <ul>
+                    <li><a href="#">WeLoveMessi</a></li>
+                    <li><a href="#">MESSIGOATArgument</a></li>
+                    <li><a href="#">WhyMessitheGOAT</a></li>
                 </ul>
             </section>
         </aside>
