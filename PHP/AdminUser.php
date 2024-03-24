@@ -45,7 +45,7 @@ $stmt->close();
                 <li><a href="Index.php">Home</a></li>
                 <li><a href="adminPage.php">Admin Portal</a></li>
                 <li class="active"><a href="#">Users</a></li>
-                <li><a href="#">Threads</a></li>
+                <li><a href="AdminThreadPage.php">Threads</a></li>
             </ul>
         </aside>
 
