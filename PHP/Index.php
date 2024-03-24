@@ -133,9 +133,9 @@ include 'fetch_recent_posts.php'; // Retrieves the most recent posts
             <section>
                 <h3>Categories</h3>
                 <ul>
-                    <li><a href="#">WeLoveMessi</a></li>
-                    <li><a href="#">MESSIGOATArgument</a></li>
-                    <li><a href="#">WhyMessitheGOAT</a></li>
+                    <li><a href="category.php?category=WeLoveMessi">WeLoveMessi</a></li>
+                    <li><a href="category.php?category=MESSIGOATArgument">MESSIGOATArgument</a></li>
+                    <li><a href="category.php?category=WhyMessitheGOAT">WhyMessitheGOAT</a></li>
                 </ul>
             </section>
         </aside>
