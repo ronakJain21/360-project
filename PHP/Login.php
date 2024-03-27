@@ -51,11 +51,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>MessiIsTheGOAT | Log in</title>
     <link rel="stylesheet" href="../CSS/login_css.css">
     <script>
-                window.onload = function() {
-            var isBlocked = <?php echo $isBlocked; ?>;
-            if (isBlocked) {
-                alert('Your account has been blocked. Please contact the admin for more info.');
-            }
+    window.onload = function() {
+        var isBlocked = <?php echo $isBlocked; ?>;
+        if (isBlocked) {
+            alert('Your account has been blocked. Please contact the admin for more info.');
+        }
+    };
 
         function togglePassword() {
             var x = document.getElementById("password");
@@ -69,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
     <div id="bar">
-    <div style="font-size : 40px";>MessiIsTheGOAT</div>
+    <div style="font-size : 40px">MessiIsTheGOAT</div>
         <div id="signup_botton"><a href="SignUp.php">Sign Up</a></div> 
     </div>
 

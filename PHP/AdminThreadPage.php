@@ -32,7 +32,7 @@ while ($row = $result->fetch_assoc()) {
             <div class="logo-title">MessiIsTheGoat</div>
         </div>
         <ul class="sidebar-menu">
-            <li><a href="Index.php">Home</a></li>
+            <li><a href="index.php">Home</a></li>
             <li><a href="adminPage.php">Admin Portal</a></li>
             <li><a href="AdminUser.php">Users</a></li>
             <li class="active"><a href="AdminThreadPage.php">Threads</a></li>
@@ -81,6 +81,7 @@ function toggleVisibility(threadId, isHidden, element) {
         success: function(response) {
             if (response.success) {
                 $(element).text(response.is_hidden ? 'Unhide' : 'Hide').toggleClass('unhide-btn hide-btn');
+                window.location.reload();
             } else {
                 console.log(response.message);
             }

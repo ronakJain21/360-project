@@ -23,7 +23,7 @@ include 'fetch_recent_posts.php'; // Retrieves the most recent posts
                 <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQHnhWFBFpqpDEQE_DyEaYEXHwa8QY4mAsBTeZaif0XvmL1sXI2" alt="MessiIsTheGoat Logo" class="logo-image">
                 <div class="logo-title">MessiIsTheGoat</div>
             </div>
-            <a href="Index.php" class="nav-link">Home</a>
+            <a href="index.php" class="nav-link">Home</a>
             <!-- <a href="categories.php" class="nav-link">Categories</a> -->
             <form action="search.php" method="post" class="search-container">
                 <input type="text" name="search_query" placeholder="Search..." class="search-input">

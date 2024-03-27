@@ -45,7 +45,7 @@ $comments = $commentsResult->num_rows;
         <aside class="admin-sidebar">
             <h2 class="sidebar-title">MENU</h2>
             <ul class="sidebar-menu">
-                <li><a href="Index.php">Home</a></li>
+                <li><a href="index.php">Home</a></li>
                 <li class="active"><a href="AdminDashboard.php">Admin Portal</a></li>
                 <li><a href="AdminUser.php">Users</a></li>
                 <li><a href="AdminThreadPage.php">Threads</a></li>

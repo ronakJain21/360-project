@@ -143,7 +143,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQHnhWFBFpqpDEQE_DyEaYEXHwa8QY4mAsBTeZaif0XvmL1sXI2" alt="MessiIsTheGoat Logo" class="logo-image">
                 <div class="logo-title">MessiIsTheGoat</div>
             </div>
-            <a href="Index.php" class="nav-link">Home</a>
+            <a href="index.php" class="nav-link">Home</a>
             <!-- <a href="#" class="nav-link">Categories</a> -->
             <!-- <div class="search-container">
                 <input type="text" placeholder="Search..." class="search-input">

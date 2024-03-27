@@ -42,7 +42,7 @@ $stmt->close();
                 <div class="logo-title">MessiIsTheGoat</div>
             </div>
             <ul class="sidebar-menu">
-                <li><a href="Index.php">Home</a></li>
+                <li><a href="index.php">Home</a></li>
                 <li><a href="adminPage.php">Admin Portal</a></li>
                 <li class="active"><a href="#">Users</a></li>
                 <li><a href="AdminThreadPage.php">Threads</a></li>
