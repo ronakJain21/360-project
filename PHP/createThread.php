@@ -44,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt->bind_param("isss", $userId, $title, $body, $category_id);
 
             if ($stmt->execute()) {
-                header('Location: Index.php');
+                header('Location: index.php');
                 exit();
             } else {
                 $errorMessage = "Error: " . $db->error;

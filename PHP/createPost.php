@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if ($stmt->execute()) {
                 // Redirect to Index.php after successful post creation
-                header('Location: Index.php');
+                header('Location: index.php');
                 exit();
             } else {
                 $errorMessage = "Error: " . $stmt->error;
