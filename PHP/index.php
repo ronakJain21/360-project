@@ -39,7 +39,7 @@ include 'fetch_recent_posts.php'; // Retrieves the most recent posts
                 <?php endif; ?>
             <?php else: ?>
                 <a href="Login.php" class="nav-link">Login</a>
-                <a href="Signup.php" class="nav-button">Register</a>
+                <a href="SignUp.php" class="nav-button">Register</a>
             <?php endif; ?>
         </nav>
     </header>
