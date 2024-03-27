@@ -190,7 +190,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <main>
             <section class="profile_activity">
-                <form action="user_profile_settings.php" method="post" enctype="multipart/form-data">
+                <form action="User_Profile_Settings.php" method="post" enctype="multipart/form-data">
                     <!-- Profile Picture Update Section -->
                     <h4>Change Profile Picture:</h4>
                     <img src="user_image.php" alt="Profile Pic" class="profile_pic_small"><br><br>
