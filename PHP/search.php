@@ -68,7 +68,7 @@ if (isset($_POST['search_query'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search Results</title>
     <link rel="stylesheet" href="../CSS/searchstyle.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
 </head>
 <body>
     <header>
@@ -78,7 +78,7 @@ if (isset($_POST['search_query'])) {
                 <div class="logo-title">MessiIsTheGoat</div>
             </div>
             <a href="index.php" class="nav-link">Home</a>
-            <a href="categories.php" class="nav-link">Categories</a>
+            <!-- <a href="categories.php" class="nav-link">Categories</a> -->
             <form action="search.php" method="post" class="search-container">
                 <input type="text" name="search_query" placeholder="Search..." class="search-input">
                 <button type="submit" class="search-btn"><i class="fas fa-search"></i></button>
