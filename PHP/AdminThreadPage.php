@@ -22,7 +22,7 @@ while ($row = $result->fetch_assoc()) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All Threads - Admin Dashboard - MessiIsTheGoat</title>
     <link rel="stylesheet" href="../CSS/stylesadmin2.css">
-    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 <div class="admin-container">
