@@ -1,356 +1,358 @@
-body {
-    font-family: Arial, sans-serif;
-    background: #f4f4f4;
-}
+@media only screen and (min-width: 769px) {
+    body {
+        font-family: Arial, sans-serif;
+        background: #f4f4f4;
+    }
 
-header {
-    background: #004d98; /* Barcelona Blue */
-    color: white;
-}
+    header {
+        background: #004d98; /* Barcelona Blue */
+        color: white;
+    }
 
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 5px;
-}
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 5px;
+    }
 
-.logo-container {
-    display: flex;
-    align-items: center;
-}
+    .logo-container {
+        display: flex;
+        align-items: center;
+    }
 
-.logo-image {
-    height: 50px; /* Adjust based on your actual logo size */
-}
+    .logo-image {
+        height: 50px; /* Adjust based on your actual logo size */
+    }
 
-.logo-title {
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 24px; /* Adjust as needed */
-    margin-left: 10px;
-}
+    .logo-title {
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 24px; /* Adjust as needed */
+        margin-left: 10px;
+    }
 
-.nav-link, .nav-button {
-    color: white;
-    text-decoration: none;
-    margin: 0 15px; /* Adjust the spacing between the links */
-    padding: 5px 10px;
-    font-size: 16px; /* Adjust as needed */
-}
+    .nav-link, .nav-button {
+        color: white;
+        text-decoration: none;
+        margin: 0 15px; /* Adjust the spacing between the links */
+        padding: 5px 10px;
+        font-size: 16px; /* Adjust as needed */
+    }
 
-.nav-link:hover, .nav-button:hover {
-    background-color: #003366; /* Darker blue on hover */
-}
+    .nav-link:hover, .nav-button:hover {
+        background-color: #003366; /* Darker blue on hover */
+    }
 
-.search-container {
-    display: flex;
-    align-items: center;
-    margin: 0 15px; /* Add margin to the search container */
-}
+    .search-container {
+        display: flex;
+        align-items: center;
+        margin: 0 15px; /* Add margin to the search container */
+    }
 
-.search-input {
-    padding: 5px 10px;
-    border-radius: 20px;
-    border: none;
-    outline: none;
-}
+    .search-input {
+        padding: 5px 10px;
+        border-radius: 20px;
+        border: none;
+        outline: none;
+    }
 
-.search-btn {
-    background: none;
-    border: none;
-    margin-left: 5px;
-    cursor: pointer;
-    color: white;
-}
+    .search-btn {
+        background: none;
+        border: none;
+        margin-left: 5px;
+        cursor: pointer;
+        color: white;
+    }
 
-.nav-button {
-    background-color: #a50044; /* Barcelona Red */
-    border-radius: 4px;
-}
-.container {
-    display: flex;
-    padding: 20px;
-}
+    .nav-button {
+        background-color: #a50044; /* Barcelona Red */
+        border-radius: 4px;
+    }
+    .container {
+        display: flex;
+        padding: 20px;
+    }
 
-main {
-    flex: 3;
-}
+    main {
+        flex: 3;
+    }
 
-.create-post-box {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 22px;
-    margin: 20px auto;
-    max-width: 600px; /* Adjust width as needed */
-    background-color: #fff;
-}
+    .create-post-box {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 22px;
+        margin: 20px auto;
+        max-width: 600px; /* Adjust width as needed */
+        background-color: #fff;
+    }
 
-.create-post-input {
-    display: flex;
-    align-items: center;
-    flex-grow: 1;
-    margin-right: 10px;
-}
+    .create-post-input {
+        display: flex;
+        align-items: center;
+        flex-grow: 1;
+        margin-right: 10px;
+    }
 
-.create-post-input i {
-    color: #ccc;
-    margin-right: 8px;
-}
+    .create-post-input i {
+        color: #ccc;
+        margin-right: 8px;
+    }
 
-.create-post-input input {
-    border: none;
-    outline: none;
-    font-size: 16px;
-    color: #333;
-    cursor: pointer;
-}
+    .create-post-input input {
+        border: none;
+        outline: none;
+        font-size: 16px;
+        color: #333;
+        cursor: pointer;
+    }
 
-.create-post-icons i {
-    color: #ccc;
-    margin-left: 8px;
-    cursor: pointer;
-}
+    .create-post-icons i {
+        color: #ccc;
+        margin-left: 8px;
+        cursor: pointer;
+    }
 
-.create-post-icons i:hover {
-    color: #007bff; /* Or use any color for hover state */
-}
+    .create-post-icons i:hover {
+        color: #007bff; /* Or use any color for hover state */
+    }
 
-.posts {
-    margin-right: 20px;
-}
+    .posts {
+        margin-right: 20px;
+    }
 
-.post {
-    display: flex;
-    background: white;
-    padding: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    border: 1px solid #ddd;
-}
+    .post {
+        display: flex;
+        background: white;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        border: 1px solid #ddd;
+    }
 
-.vote-btn {
-    padding: 5px 10px;
-    border: 1px solid #ccc;
-    background-color: #f9f9f9;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
+    .vote-btn {
+        padding: 5px 10px;
+        border: 1px solid #ccc;
+        background-color: #f9f9f9;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
 
-.vote-btn.upvote-btn.active,
-.vote-btn.upvote-btn:hover {
-    background-color: #4CAF50; /* Green for upvote */
-    color: white;
-}
+    .vote-btn.upvote-btn.active,
+    .vote-btn.upvote-btn:hover {
+        background-color: #4CAF50; /* Green for upvote */
+        color: white;
+    }
 
-.vote-btn.downvote-btn.active,
-.vote-btn.downvote-btn:hover {
-    background-color: #F44336; /* Red for downvote */
-    color: white;
-}
-
-
-.vote-count {
-    margin: 5px 0;
-}
-
-.post h2 a {
-    color: #333;
-    text-decoration: none;
-}
-
-.post-info p {
-    color: #777;
-    font-size: 0.9em;
-}
-
-.comment-section {
-    margin-top: 10px;
-    margin-bottom: 20px; /* Add space after the comment section */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    /* Other styles remain the same */
-}
+    .vote-btn.downvote-btn.active,
+    .vote-btn.downvote-btn:hover {
+        background-color: #F44336; /* Red for downvote */
+        color: white;
+    }
 
 
-.comment-btn {
-    padding: 8px 16px;
-    background-color: #004d98; /* Barcelona Blue */
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
+    .vote-count {
+        margin: 5px 0;
+    }
 
-.comment-btn:hover {
-    background-color: #003366; /* A darker shade for hover effect */
-}
+    .post h2 a {
+        color: #333;
+        text-decoration: none;
+    }
 
-.menubar {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    margin-right: 10px;
-}
+    .post-info p {
+        color: #777;
+        font-size: 0.9em;
+    }
 
-.menubar section {
-    margin-bottom: 20px;
-    padding: 10px;
-    background: white;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-.menubar h2{
-    margin-top: 0;
-    color: rgb(78, 78, 78);
-    font: bold;
-    padding: 5px 10px;
-    text-align: center;
-}
-
-.menubar h3 {
-    margin-top: 0;
-    background: #004d98; /* Barcelona Blue */
-    color: white;
-    padding: 5px 10px;
-    text-align: center;
-}
-
-.menubar ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.menubar li a {
-    text-decoration: none;
-    color: #333;
-    display: flex;
-    padding: 5px 10px;
-    transition: background-color 0.3s ease;
-}
-
-.menubar li a:hover {
-    background-color: #f4f4f4;
-}
-
-.settings{
-    background: #004d98;
-    width: 100%;
-    padding: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.settings:hover{
-    background-color: #DB0030;
-}
-
-.menubar_icon{
-    width: 16px; /* Sets a fixed width for the icon */
-    height: 16px; /* Sets a fixed height for the icon */
-    margin-right: 8px; /* Adds some space between the icon and the text */
-    display: block;
-}
-
-.profile_pic{
-    width: 100%;
-}
-.profile_pic_small{
-    width: 70px;
-}
-.change_profile_pic{
-    margin-left: 8px;
-    margin-bottom: 10px;
-}
-.profile_activity{
-    margin-right: 20px;
-}
-
-.profile_activity h3{
-    margin-left: 30px;
-}
-
-.activities{
-    display: flex;
-    background: white;
-    padding: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    border: 1px solid #ddd;
-    align-items: center;
-}
-
-.activities_icon{
-    width: 50px; /* Sets a fixed width for the icon */
-    height: 50px; /* Sets a fixed height for the icon */
-    margin-right: 25px; /* Adds some space between the icon and the text */
-    margin-left: 1px;
-    display: block;
-}
-
-.activity-date {
-    margin-top: 5px; /* Adjust the margin as needed */
-}
+    .comment-section {
+        margin-top: 10px;
+        margin-bottom: 20px; /* Add space after the comment section */
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        /* Other styles remain the same */
+    }
 
 
-.comment{
-    font: italic;
-    color: grey;
-}
+    .comment-btn {
+        padding: 8px 16px;
+        background-color: #004d98; /* Barcelona Blue */
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
 
-.flex-container {
-    display: flex;
-    align-items: center; /* This will vertically center the text and the button */
-    margin-top: 8px;
-    margin-bottom: 50px;
-}
+    .comment-btn:hover {
+        background-color: #003366; /* A darker shade for hover effect */
+    }
 
-.flex-text {
-    margin-left: 8px; /* Adjust the spacing between text and button as needed */
-    font-size: small;
-}
+    .menubar {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        margin-right: 10px;
+    }
 
-.inputs-container {
-    display: flex; /* This will align the input boxes in a row */
-    align-items: center; /* This will vertically align the input boxes */
-    justify-content: center; /* This will horizontally center the container */
-    gap: 10px; /* This adds space between the input boxes */
-    /* height: 100vh; Full viewport height */
-    padding: 0;
-    margin: 0;
-}
+    .menubar section {
+        margin-bottom: 20px;
+        padding: 10px;
+        background: white;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
 
-.input-box {
-    padding: 10px 15px;
-    border: 1px solid #ccc;
-    font-size: 10px;
-    /* border-radius: 4px; */
-    outline: none;
-}
+    .menubar h2{
+        margin-top: 0;
+        color: rgb(78, 78, 78);
+        font: bold;
+        padding: 5px 10px;
+        text-align: center;
+    }
 
-.input-box:focus {
-    border-color: #0066ff;
-    box-shadow: 0 0 8px rgba(0, 102, 255, 0.5);
-}
+    .menubar h3 {
+        margin-top: 0;
+        background: #004d98; /* Barcelona Blue */
+        color: white;
+        padding: 5px 10px;
+        text-align: center;
+    }
 
-.deactivate p{
-    font:small-caption;
-}
+    .menubar ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
 
-footer {
-    background: #004d98; /* Deeper Barcelona Blue */
-    color: white;
-    text-align: center;
-    padding: 10px 20px;
-    width: 100%;
+    .menubar li a {
+        text-decoration: none;
+        color: #333;
+        display: flex;
+        padding: 5px 10px;
+        transition: background-color 0.3s ease;
+    }
+
+    .menubar li a:hover {
+        background-color: #f4f4f4;
+    }
+
+    .settings{
+        background: #004d98;
+        width: 100%;
+        padding: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .settings:hover{
+        background-color: #DB0030;
+    }
+
+    .menubar_icon{
+        width: 16px; /* Sets a fixed width for the icon */
+        height: 16px; /* Sets a fixed height for the icon */
+        margin-right: 8px; /* Adds some space between the icon and the text */
+        display: block;
+    }
+
+    .profile_pic{
+        width: 100%;
+    }
+    .profile_pic_small{
+        width: 70px;
+    }
+    .change_profile_pic{
+        margin-left: 8px;
+        margin-bottom: 10px;
+    }
+    .profile_activity{
+        margin-right: 20px;
+    }
+
+    .profile_activity h3{
+        margin-left: 30px;
+    }
+
+    .activities{
+        display: flex;
+        background: white;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        border: 1px solid #ddd;
+        align-items: center;
+    }
+
+    .activities_icon{
+        width: 50px; /* Sets a fixed width for the icon */
+        height: 50px; /* Sets a fixed height for the icon */
+        margin-right: 25px; /* Adds some space between the icon and the text */
+        margin-left: 1px;
+        display: block;
+    }
+
+    .activity-date {
+        margin-top: 5px; /* Adjust the margin as needed */
+    }
+
+
+    .comment{
+        font: italic;
+        color: grey;
+    }
+
+    .flex-container {
+        display: flex;
+        align-items: center; /* This will vertically center the text and the button */
+        margin-top: 8px;
+        margin-bottom: 50px;
+    }
+
+    .flex-text {
+        margin-left: 8px; /* Adjust the spacing between text and button as needed */
+        font-size: small;
+    }
+
+    .inputs-container {
+        display: flex; /* This will align the input boxes in a row */
+        align-items: center; /* This will vertically align the input boxes */
+        justify-content: center; /* This will horizontally center the container */
+        gap: 10px; /* This adds space between the input boxes */
+        /* height: 100vh; Full viewport height */
+        padding: 0;
+        margin: 0;
+    }
+
+    .input-box {
+        padding: 10px 15px;
+        border: 1px solid #ccc;
+        font-size: 10px;
+        /* border-radius: 4px; */
+        outline: none;
+    }
+
+    .input-box:focus {
+        border-color: #0066ff;
+        box-shadow: 0 0 8px rgba(0, 102, 255, 0.5);
+    }
+
+    .deactivate p{
+        font:small-caption;
+    }
+
+    footer {
+        background: #004d98; /* Deeper Barcelona Blue */
+        color: white;
+        text-align: center;
+        padding: 10px 20px;
+        width: 100%;
+    }
 }
 
 
