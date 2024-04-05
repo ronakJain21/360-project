@@ -61,7 +61,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MessiIsTheGoat - Recommend Thread</title>
-    <link rel="stylesheet" href="../CSS/CreatPostStylesheet.css">
+    <link rel="stylesheet" href="../CSS/CreatePostStylesheet-phone.css" media ="screen and (max-width: 480px)">
+    <link rel="stylesheet" href="../CSS/CreatPostStylesheet.css" media ="screen and (min-width: 769px)">
 </head>
 <body>
     <header>

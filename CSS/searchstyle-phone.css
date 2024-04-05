@@ -1,0 +1,106 @@
+@media only screen and (max-width: 480px) {
+    body {
+        font-family: Arial, sans-serif;
+        background: #f4f4f4;
+        padding: 0;
+        margin: 0; /* Ensure no extra space */
+    }
+
+    header {
+        background: #004d98; /* Barcelona Blue */
+        color: white;
+        padding: 10px; /* Adjust padding */
+    }
+
+    .navbar {
+        display: flex;
+        flex-direction: column; /* Stack elements */
+        align-items: center; /* Center align the items */
+        padding: 5px 0; /* Adjust padding */
+    }
+
+    .logo-container {
+        margin-bottom: 10px; /* Add some space below the logo */
+    }
+
+    .logo-image {
+        height: 40px; /* Adjust logo size */
+    }
+
+    .logo-title {
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 20px; /* Adjust font size */
+        margin-left: 5px; /* Adjust margin */
+    }
+
+    .nav-link, .nav-button {
+        color: white;
+        text-decoration: none;
+        margin: 5px; /* Adjust margin */
+        padding: 5px; /* Adjust padding */
+        font-size: 14px; /* Adjust font size */
+    }
+
+    .nav-link:hover, .nav-button:hover {
+        background-color: #003366; /* Darker blue on hover */
+    }
+
+    .search-container {
+        display: flex;
+        flex-direction: column; /* Stack search elements */
+        align-items: center; /* Center align */
+        margin: 10px 0; /* Adjust margin */
+    }
+
+    .search-input {
+        width: 90%; /* Adjust width */
+        padding: 5px; /* Adjust padding */
+        margin-top: 5px; /* Add some space above */
+    }
+
+    .search-btn {
+        padding: 5px; /* Adjust padding */
+        margin-top: 5px; /* Add some space above */
+    }
+
+    .nav-button {
+        background-color: #a50044; /* Barcelona Red */
+        border-radius: 4px;
+        width: auto; /* Adjust width */
+    }
+
+    .container {
+        flex-direction: column; /* Stack main content and sidebar */
+        padding: 10px; /* Adjust padding */
+    }
+
+    main {
+        width: 100%; /* Full width for main content */
+    }
+
+    .create-post-box, .create-thread-box, #search-results {
+        padding: 10px; /* Adjust padding */
+        margin-bottom: 10px; /* Adjust bottom margin */
+    }
+
+    #create-posts-results, #comments-results, #threads-results {
+        margin-bottom: 10px; /* Adjust bottom margin */
+    }
+
+    .search-item {
+        padding: 5px; /* Adjust padding */
+    }
+
+    .search-item h4, .search-item p {
+        margin: 5px 0; /* Adjust margin */
+    }
+
+    aside {
+        padding: 0 10px; /* Adjust padding */
+    }
+
+    footer {
+        padding: 10px; /* Adjust padding */
+        position: static; /* Adjust position */
+    }
+}
