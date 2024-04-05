@@ -128,7 +128,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MessiIsTheGOAT | Sign Up</title>
-    <link rel="stylesheet" href="../CSS/signup_css.css">
+    <link rel="stylesheet" href="../CSS/signup_css-phone.css" media ="screen and (max-width: 480px)">
+    <link rel="stylesheet" href="../CSS/signup_css.css" media ="screen and (min-width: 769px)">
 </head>
 <body style="font-family: tahoma; background-color: #e9ebee">
     <div id="bar">

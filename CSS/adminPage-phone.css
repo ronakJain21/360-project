@@ -1,0 +1,72 @@
+@media only screen and (max-width: 480px) {
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+    }
+
+    .admin-container {
+        display: flex;
+        flex-direction: column; /* Stack the sidebar and content vertically */
+        height: auto; /* Adjust height */
+    }
+
+    .admin-sidebar {
+        background-color: #004d98; /* Barcelona Blue */
+        color: white;
+        width: 100%; /* Full width */
+        padding: 10px 0; /* Adjust padding */
+    }
+
+    .sidebar-title {
+        padding: 10px; /* Adjust padding */
+        margin: 0;
+        text-align: center;
+        font-size: 20px; /* Adjust font size */
+    }
+
+    .sidebar-menu {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .sidebar-menu li a {
+        padding: 10px 15px; /* Adjust padding */
+        font-size: 16px; /* Adjust font size */
+    }
+
+    .admin-main {
+        background-color: #ECF0F1; /* Light grey background */
+        padding: 20px; /* Adjust padding */
+    }
+
+    .admin-content {
+        width: 100%; /* Full width */
+        flex-direction: column; /* Stack children vertically */
+    }
+
+    .admin-stat-cards {
+        justify-content: center; /* Center stat cards */
+    }
+
+    .stat-card {
+        margin: 10px;
+        flex-basis: 100%; /* Full width */
+    }
+
+    .trending-sidebar {
+        width: 100%; /* Full width */
+        padding-left: 0; /* Adjust padding */
+    }
+
+    .trending-post {
+        padding: 10px; /* Adjust padding */
+    }
+
+    .trending-post h2, .trending-post p, .post-meta {
+        font-size: smaller; /* Adjust font size */
+    }
+
+    .post-actions button {
+        padding: 1px 3px; /* Adjust padding */
+    }
+}

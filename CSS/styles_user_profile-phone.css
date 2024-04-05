@@ -1,0 +1,92 @@
+@media only screen and (max-width: 480px) {
+    body {
+        font-family: Arial, sans-serif;
+        background: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
+
+    header {
+        background: #004d98; /* Barcelona Blue */
+        color: white;
+        padding: 10px; /* Adjust padding */
+    }
+
+    .navbar {
+        display: flex;
+        flex-direction: column; /* Stack the items vertically */
+        justify-content: center;
+        align-items: center;
+        padding: 10px 0; /* Adjust padding */
+    }
+
+    .logo-container {
+        justify-content: center; /* Center logo */
+    }
+
+    .logo-image {
+        height: 40px; /* Adjust logo size */
+    }
+
+    .logo-title {
+        font-size: 20px; /* Adjust font size */
+        margin: 0; /* Adjust margin */
+    }
+
+    .nav-link, .nav-button {
+        font-size: 14px; /* Adjust font size */
+        padding: 5px; /* Adjust padding */
+        margin: 5px; /* Adjust margin */
+    }
+
+    .search-container {
+        margin: 10px 0; /* Adjust margin */
+        flex-direction: column; /* Stack search elements */
+    }
+
+    .search-input, .search-btn {
+        width: 90%; /* Adjust width */
+        margin: 5px auto; /* Center align */
+    }
+
+    .container {
+        flex-direction: column; /* Stack elements vertically */
+        padding: 10px; /* Adjust padding */
+    }
+
+    main {
+        width: 100%; /* Adjust main content width */
+    }
+
+    .create-post-box {
+        flex-direction: column; /* Stack elements vertically */
+        padding: 10px; /* Adjust padding */
+        margin: 10px 0; /* Adjust margin */
+        width: 100%; /* Adjust width */
+    }
+
+    .create-post-input {
+        flex-direction: column; /* Stack input elements */
+        margin: 5px 0; /* Adjust margin */
+    }
+
+    .posts, .post {
+        width: 100%; /* Adjust width */
+        margin-bottom: 10px; /* Adjust margin */
+    }
+
+    .vote-btn, .comment-btn {
+        padding: 5px; /* Adjust padding */
+        margin: 5px 0; /* Adjust margin */
+    }
+
+    .menubar, aside {
+        display: none; /* Hide sidebar for mobile */
+    }
+
+    footer {
+        padding: 10px; /* Adjust padding */
+        position: relative; /* Adjust position */
+        bottom: 0; /* Ensure footer is at the bottom */
+    }
+}

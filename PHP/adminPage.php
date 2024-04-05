@@ -38,7 +38,8 @@ $comments = $commentsResult->num_rows;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard - MessiIsTheGoat</title>
-    <link rel="stylesheet" href="../CSS/stylesadmin1.css">
+    <link rel="stylesheet" href="../CSS/adminPage-phone.css" media ="screen and (max-width: 480px)">
+    <link rel="stylesheet" href="../CSS/adminPage.css" media ="screen and (min-width: 769px)">
 </head>
 <body>
     <div class="admin-container">

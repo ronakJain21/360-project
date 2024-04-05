@@ -31,7 +31,8 @@ $stmt->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All Users - Admin Dashboard - MessiIsTheGoat</title>
-    <link rel="stylesheet" href="../CSS/stylesadmin3.css">
+    <link rel="stylesheet" href="../CSS/AdminUser-phone.css" media ="screen and (max-width: 480px)">
+    <link rel="stylesheet" href="../CSS/AdminUser.css" media ="screen and (min-width: 769px)">
 </head>
 <body>
     <div class="admin-container">

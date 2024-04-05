@@ -63,7 +63,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MessiIsTheGoat - User Profile</title>
-    <link rel="stylesheet" href="../CSS/styles_user_profile.css">
+    <link rel="stylesheet" href="../CSS/styles_user_profile-phone.css" media ="screen and (max-width: 480px)">
+    <link rel="stylesheet" href="../CSS/styles_user_profile.css" media ="screen and (min-width: 769px)">
     <script src="https://kit.fontawesome.com/your-kit-code.js" crossorigin="anonymous"></script>
 </head>
 <body>
