@@ -27,6 +27,7 @@
         // $userProfilePic = $user['profile_pic'] ?: '/path/to/default/profile_pic.png';
         $username = $user['username'];
         $userId = $user['user_id']; // Get the user's ID
+        $userProfilePic = "user_image.php?user_id=" . $userId;
     } else {
         // Handle case where user data is not found
         $userProfilePic = '/path/to/default/profile_pic.png';
@@ -80,7 +81,7 @@
                 <input type="text" placeholder="Search..." class="search-input">
                 <button class="search-btn"><i class="fa fa-search"></i></button>
             </div> -->
-            <a href="User_Profile.php" class="nav-link">Welcome, <?php echo htmlspecialchars($username); ?></a>
+            <a href="User_Profile.php" class="nav-link"><img src="<?php echo $userProfilePic; ?>" alt="Profile Pic" style="height: 20px; width: 20px; border-radius: 50%;"> Welcome, <?php echo htmlspecialchars($username); ?></a>
             <form action="logout.php" method="POST" style="display: inline;">
                 <button type="submit" class="logout-btn">Logout</button>
             </form>
