@@ -80,13 +80,14 @@ include 'fetch_recent_posts.php'; // Retrieves the most recent posts
                         <div class="post-info">
                             <h2><?php echo htmlspecialchars($post['title']); ?></h2>
                             <p><?php echo htmlspecialchars($post['content']); ?></p>
-                            <!-- Delete Post Button for Admin -->
+                            <p class="posted-on" style="font-size: 0.8em; color: #666; margin-top: 5px;">Posted on: <?php echo (new DateTime($post['timestamp']))->format('Y-m-d H:i'); ?></p>
                             <?php if ($isAdmin): ?>
                                 <button class="delete-post-btn" onclick="deletePost(<?php echo htmlspecialchars($post['post_id']); ?>)">Delete Post</button>
                             <?php endif; ?>
                         </div>
                         <!-- Comment Section -->
-                        <div class="comments-section">
+                        <button class="comments-toggle">Show Comments</button>
+                        <div class="comments-section" style="display: none;">
                             <?php if ($userLoggedIn): ?>
                                 <form class="comment-form" method="post">
                                     <input type="hidden" name="post_id" value="<?php echo htmlspecialchars($post['post_id']); ?>">
@@ -98,7 +99,11 @@ include 'fetch_recent_posts.php'; // Retrieves the most recent posts
                                 <div class="comment">
                                     <strong><?php echo htmlspecialchars($comment['username']); ?>:</strong>
                                     <p><?php echo htmlspecialchars($comment['content']); ?></p>
-                                    <!-- Delete Comment Button for Admin -->
+                                    <?php if (isset($comment['timestamp']) && !empty($comment['timestamp'])): ?>
+                                        <p class="commented-on" style="font-size: 0.8em; color: #666; margin-top: 5px;">Commented on: <?php echo (new DateTime($comment['timestamp']))->format('Y-m-d H:i'); ?></p>
+                                        <?php else: ?>
+                                        <p>Timestamp unavailable.</p>
+                                        <?php endif; ?>
                                     <?php if ($isAdmin): ?>
                                         <button class="delete-comment-btn" onclick="deleteComment(<?php echo htmlspecialchars($comment['comment_id']); ?>)">Delete Comment</button>
                                     <?php endif; ?>
@@ -146,6 +151,15 @@ include 'fetch_recent_posts.php'; // Retrieves the most recent posts
     
         <script>
 $(document).ready(function() {
+    $('.comments-toggle').click(function() {
+        var $this = $(this);
+        var $commentsSection = $this.next('.comments-section');
+        
+        $commentsSection.slideToggle('fast', function() {
+            var isVisible = $commentsSection.is(':visible');
+            $this.text(isVisible ? 'Hide Comments' : 'Show Comments');
+        });
+    });
     // Event handler for adding comments
     $('.comment-btn').click(function() {
         var form = $(this).closest('form');

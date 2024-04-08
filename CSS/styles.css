@@ -208,3 +208,17 @@ footer {
     padding: 10px 20px;
     width: 100%;
 }
+.comments-toggle-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    display: block;
+}
+
+.comments-toggle-btn:hover {
+    background-color: #0056b3;
+}
