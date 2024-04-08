@@ -7,8 +7,18 @@ if (session_status() == PHP_SESSION_NONE) {
 include 'login_status.php'; // Include login_status.php for session and user validation
 
 // Retrieve threads and their related users from the database
-$sql = "SELECT threads.thread_id, threads.title, threads.creation_date, threads.is_hidden, users.username FROM threads JOIN users ON threads.user_id = users.user_id;";
-$result = $db->query($sql);
+// $sql = "SELECT threads.thread_id, threads.title, threads.creation_date, threads.is_hidden, users.username FROM threads JOIN users ON threads.user_id = users.user_id;";
+// $result = $db->query($sql);
+
+$searchTerm = isset($_GET['search']) ? $_GET['search'] : '';
+
+$sql = "SELECT threads.thread_id, threads.title, threads.creation_date, threads.is_hidden, users.username FROM threads JOIN users ON threads.user_id = users.user_id WHERE threads.title LIKE ?;";
+$stmt = $db->prepare($sql);
+$likeSearchTerm = '%' . $searchTerm . '%';
+$stmt->bind_param("s", $likeSearchTerm);
+$stmt->execute();
+$result = $stmt->get_result();
+
 $threads = [];
 while ($row = $result->fetch_assoc()) {
     $threads[] = $row;
@@ -42,6 +52,10 @@ while ($row = $result->fetch_assoc()) {
     <main class="admin-main">
         <div class="threads-container">
             <h1>All Threads</h1>
+            <form method="get" action="">
+                <input type="text" name="search" placeholder="Search by thread title" value="<?php echo htmlspecialchars($searchTerm); ?>">
+                <input type="submit" value="Filter">
+            </form>
             <table class="threads-table">
                 <thead>
                     <tr>
@@ -71,6 +85,7 @@ while ($row = $result->fetch_assoc()) {
         </div>
     </main>
 </div>
+
 <script>
 function toggleVisibility(threadId, isHidden, element) {
     var phpFile = isHidden ? 'unhide.php' : 'hide.php';

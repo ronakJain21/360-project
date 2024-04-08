@@ -12,11 +12,19 @@ include 'config.php'; // Database connection file
 
 // Assuming $_SESSION['user_id'] holds the ID of the currently logged in user
 $adminUserId = $_SESSION['user_id'];
-$query = "SELECT user_id, username, email, registration_date, status FROM users WHERE user_id != ? ORDER BY registration_date DESC";
+// $query = "SELECT user_id, username, email, registration_date, status FROM users WHERE user_id != ? ORDER BY registration_date DESC";
+// $stmt = $db->prepare($query);
+// $stmt->bind_param("i", $adminUserId); // Exclude the admin's user_id
+// $stmt->execute();
+// $result = $stmt->get_result();
+$searchTerm = isset($_GET['search']) ? $_GET['search'] : '';
+$query = "SELECT user_id, username, email, registration_date, status FROM users WHERE user_id != ? AND username LIKE ? ORDER BY registration_date DESC";
 $stmt = $db->prepare($query);
-$stmt->bind_param("i", $adminUserId); // Exclude the admin's user_id
+$likeSearchTerm = '%' . $searchTerm . '%';
+$stmt->bind_param("is", $adminUserId, $likeSearchTerm);
 $stmt->execute();
 $result = $stmt->get_result();
+
 
 $users = [];
 while ($row = $result->fetch_assoc()) {
@@ -53,6 +61,10 @@ $stmt->close();
         <main class="admin-main">
             <div class="users-container">
                 <h1>All Users</h1>
+                <form method="get" action="">
+                    <input type="text" name="search" placeholder="Search by username" value="<?php echo htmlspecialchars($searchTerm); ?>">
+                    <input type="submit" value="Filter">
+                </form>
                 <table class="users-table">
                     <thead>
                         <tr>
