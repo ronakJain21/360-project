@@ -4,76 +4,78 @@
         background-color: #e9ebee;
         margin: 0;
         display: flex;
+        flex-direction: column; /* Ensure content is stacked vertically */
         justify-content: center;
         align-items: center;
         height: 100vh;
-        padding: 10px; /* Added padding for smaller screens */
+        padding: 10px;
     }
 
     #bar {
-        position: relative; /* Changed from absolute to relative */
-        top: 0;
+        position: relative;
         width: 100%;
-        height: 60px; /* Reduced height for smaller screens */
+        height: auto; /* Allow the height to adjust based on content */
         background-color: #004D98;
         color: white;
-        padding: 10px; /* Reduced padding */
+        padding: 10px;
         box-sizing: border-box;
+        display: flex; /* Use flexbox for internal alignment */
+        justify-content: space-between; /* Space out logo and signup button */
+        align-items: center; /* Center align items vertically */
     }
 
     #logo {
-        font-size: 24px; /* Reduced font size */
+        font-size: 24px; /* Adjust if needed to ensure visibility */
+        overflow: hidden; /* Prevent logo from overflowing */
+        white-space: nowrap; /* Keep the logo text in a single line */
+        text-overflow: ellipsis; /* Add ellipsis if text is too long */
     }
 
-    #signup_button {
+    #signup_botton { /* Note: Ensure the ID matches what's used in the HTML (signup_button vs signup_botton) */
         background-color: #A50044;
-        width: auto; /* Changed width to auto */
+        width: auto;
         text-align: center;
         padding: 4px;
         border-radius: 4px;
-        float: none; /* Removed float */
-        display: block; /* Make the button block level */
-        margin: 10px auto; /* Center the button */
+        float: none;
+        display: inline-block; /* Use inline-block for alignment */
+        margin: 0 10px; /* Add some horizontal margin */
     }
 
     #bar2 {
         background-color: white;
-        width: 100%; /* Full width on smaller screens */
-        margin-top: 50px; /* Reduced margin-top */
-        padding: 20px; /* Reduced padding */
+        width: 90%; /* Reduce width to prevent overflow */
+        margin-top: 20px; /* Adjust margin */
+        padding: 20px;
         text-align: center;
         border-radius: 10px;
         box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     }
 
     input[type="text"], input[type="password"] {
-        width: calc(100% - 20px); /* Adjust width calculation */
-        height: 30px; /* Reduced height */
-        margin-bottom: 15px; /* Adjusted margin-bottom */
-        padding: 8px; /* Adjusted padding */
+        width: calc(100% - 20px); /* Adjust width */
+        height: 30px;
+        margin-bottom: 15px;
+        padding: 8px;
         border-radius: 4px;
         border: 1px solid #ccc;
-        font-size: 14px; /* Reduced font size */
+        font-size: 14px;
     }
 
     input[type="submit"] {
         width: 100%;
-        height: 35px; /* Adjusted height */
+        height: 35px;
         border-radius: 4px;
         background-color: #004D98;
         color: white;
-        font-size: 14px; /* Reduced font size */
+        font-size: 14px;
         border: none;
         cursor: pointer;
     }
 
-    input[type="submit"]:hover {
-        background-color: #003366;
-    }
-
     .form-error {
         color: red;
-        font-size: 12px; /* Reduced font size */
-        margin-bottom: 15px; /* Adjusted margin-bottom */
+        font-size: 12px;
+        margin-bottom: 15px;
     }
 }

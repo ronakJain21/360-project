@@ -58,6 +58,30 @@
         width: 100%; /* Adjust main content width */
     }
 
+    /* Show the menubar */
+    .menubar {
+        display: block; /* Ensure menubar is displayed */
+    }
+
+    /* Adjust icon sizes within the menubar */
+    .menubar_icon {
+        width: 20px; /* Smaller width for icons */
+        height: 20px; /* Smaller height for icons */
+        margin-right: 5px; /* Adjust right margin */
+    }
+
+    /* Resize activity icons */
+    .activities_icon {
+        width: 30px; /* Adjust the width as needed */
+        height: auto; /* Maintain aspect ratio */
+    }
+
+    /* Adjust logo size if necessary */
+    .logo-image {
+        width: 50px; /* Example adjustment */
+        height: auto;
+    }
+    
     .create-post-box {
         flex-direction: column; /* Stack elements vertically */
         padding: 10px; /* Adjust padding */
@@ -78,10 +102,6 @@
     .vote-btn, .comment-btn {
         padding: 5px; /* Adjust padding */
         margin: 5px 0; /* Adjust margin */
-    }
-
-    .menubar, aside {
-        display: none; /* Hide sidebar for mobile */
     }
 
     footer {
