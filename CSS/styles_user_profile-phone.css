@@ -20,6 +20,10 @@
         padding: 10px 0; /* Adjust padding */
     }
 
+    .navbar a{
+        color: white;
+    }
+
     .logo-container {
         justify-content: center; /* Center logo */
     }

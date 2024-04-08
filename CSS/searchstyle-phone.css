@@ -19,6 +19,10 @@
         padding: 5px 0; /* Adjust padding */
     }
 
+    .navbar a{
+        color: white;
+    }
+
     .logo-container {
         margin-bottom: 10px; /* Add some space below the logo */
     }

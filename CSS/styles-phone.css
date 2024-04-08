@@ -20,6 +20,10 @@
         padding: 0;
     }
 
+    .navbar a{
+        color: white;
+    }
+
     .logo-container {
         margin-bottom: 10px; /* Add space below the logo on mobile */
     }
