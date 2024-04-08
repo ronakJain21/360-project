@@ -1,0 +1,108 @@
+@media only screen and (max-width: 480px) {
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: #f4f4f4;
+        text-align: center;
+        counter-reset: formInput;
+    }
+
+    header {
+        background: #004d98; /* Barcelona Blue */
+        color: white;
+        padding: 10px; /* Reduced padding */
+    }
+    .navbar .logo {
+        font-size: 1.2em; /* Adjusted font size */
+    }
+
+    .nav-links a {
+        color: white;
+        margin-left: 10px; /* Adjusted margin */
+        text-decoration: none;
+        padding: 5px; /* Adjusted padding */
+        transition: background-color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+        background-color: #a50044; /* Barcelona Red */
+    }
+
+    .container {
+        position: relative;
+        top: 50px; /* Adjusted top position */
+        padding: 0 10px; /* Added padding */
+    }
+    .container h1 {
+        text-align: center;
+        color: black;
+        font-size: 1.5em; /* Adjusted font size */
+        margin-bottom: 10px;
+    }
+    .container h2 {
+        font-family: "Droid Serif", serif;
+        font-style: italic;
+        color: rgb(67, 63, 63);
+        text-align: center;
+        font-size: 1em; /* Adjusted font size */
+    }
+    .container form span::before {
+        counter-increment: formInput;
+        content: counter(formInput);
+        border: 2px solid #0033ff;
+        width: 30px; /* Adjusted width */
+        height: 30px; /* Adjusted height */
+        color: #000000;
+        display: inline-block;
+        border-radius: 50%;
+        line-height: 1.6em;
+        font-size: 1.2em; /* Adjusted font size */
+        position: relative;
+        left: -22px;
+        top: -11px;
+        background: #4966da;
+    }
+    form {
+        display: block; /* Changed to block for better mobile layout */
+        width: 100%; /* Full width */
+    }
+    .fields {
+        border-left: 2px solid #4c2639;
+        padding-left: 10px; /* Added padding */
+    }
+    .container span {
+        margin-bottom: 22px;
+        display: block; /* Each span on a new line */
+    }
+
+    input {
+        border: none;
+        outline: none;
+        display: block; /* Full-width inputs */
+        height: 34px;
+        vertical-align: middle;
+        position: relative;
+        bottom: 14px;
+        right: 9px;
+        border-radius: 22px;
+        width: auto; /* Adjusted width */
+        box-sizing: border-box;
+        padding: 0 18px;
+        margin: 0 auto; /* Centering input */
+    }
+    input[type="submit"] {
+        background: #4966da;
+        color: #fff;
+        position: relative;
+        left: 0; /* Adjusted position */
+        top: 25px;
+        width: 100px; /* Adjusted width */
+        cursor: pointer;
+        margin: 10px auto; /* Centering button */
+        display: block;
+    }
+    #textbox {
+        height: 150px; /* Adjusted height */
+    }
+}

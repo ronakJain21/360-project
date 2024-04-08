@@ -49,7 +49,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MessiIsTheGOAT | Log in</title>
-    <link rel="stylesheet" href="../CSS/login_css.css">
+    <link rel="stylesheet" href="../CSS/login_css-phone.css" media ="screen and (max-width: 480px)">
+    <link rel="stylesheet" href="../CSS/login_css.css" media ="screen and (min-width: 769px)">
     <script>
     window.onload = function() {
         var isBlocked = <?php echo $isBlocked; ?>;

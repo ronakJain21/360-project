@@ -132,7 +132,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MessiIsTheGoat - Profile Settings</title>
-    <link rel="stylesheet" href="../CSS/styles_user_profile.css">
+    <link rel="stylesheet" href="../CSS/styles_user_profile-phone.css" media ="screen and (max-width: 480px)">
+    <link rel="stylesheet" href="../CSS/styles_user_profile.css" media ="screen and (min-width: 769px)">
     <script src="https://kit.fontawesome.com/your-kit-code.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -190,7 +191,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <main>
             <section class="profile_activity">
-                <form action="user_profile_settings.php" method="post" enctype="multipart/form-data">
+                <form action="User_Profile_Settings.php" method="post" enctype="multipart/form-data">
                     <!-- Profile Picture Update Section -->
                     <h4>Change Profile Picture:</h4>
                     <img src="user_image.php" alt="Profile Pic" class="profile_pic_small"><br><br>

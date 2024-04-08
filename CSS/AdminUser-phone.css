@@ -1,0 +1,84 @@
+@media only screen and (max-width: 480px) {
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #ECF0F1;
+    }
+
+    .admin-container {
+        display: flex;
+        flex-direction: column; /* Stack the sidebar and content */
+        height: auto; /* Adjust the height for mobile */
+    }
+
+    .admin-sidebar {
+        background-color: #004d98;
+        color: white;
+        width: 100%; /* Full width for the sidebar */
+        padding: 15px 0; /* Adjust padding */
+    }
+
+    .logo-container {
+        text-align: center;
+        margin-bottom: 15px;
+    }
+
+    .logo-image {
+        width: 80px; /* Adjust the logo size for mobile */
+        height: auto;
+    }
+
+    .logo-title {
+        font-size: 18px; /* Adjust font size */
+        margin-top: 5px;
+    }
+
+    .sidebar-menu {
+        list-style: none;
+        padding: 0;
+        font-size: 14px; /* Adjust font size */
+    }
+
+    .sidebar-menu li a {
+        padding: 10px 15px; /* Adjust padding */
+        display: block;
+    }
+
+    .admin-main {
+        padding: 15px; /* Adjust padding */
+        overflow: auto; /* Ensure content is scrollable */
+    }
+
+    .users-container, .threads-container {
+        padding: 15px; /* Adjust padding */
+        margin-top: 15px; /* Adjust top margin */
+    }
+
+    .users-table, .threads-table {
+        margin-top: 15px; /* Adjust top margin */
+    }
+
+    .users-table th, .threads-table th,
+    .users-table td, .threads-table td {
+        padding: 10px; /* Adjust padding */
+    }
+
+    .action-btn {
+        padding: 3px 5px; /* Adjust padding */
+        font-size: 12px; /* Adjust font size */
+    }
+
+    .user-search-container {
+        flex-direction: column; /* Stack label and input */
+        align-items: flex-start;
+    }
+
+    .user-search-container label {
+        margin-bottom: 5px; /* Add space below label */
+    }
+
+    .user-search-container input[type="text"] {
+        width: 100%; /* Full width for the search bar */
+        max-width: none; /* Remove max-width */
+    }
+}

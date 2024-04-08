@@ -12,7 +12,8 @@ include 'fetch_recent_posts.php'; // Retrieves the most recent posts
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MessiIsTheGoat - Home</title>
-    <link rel="stylesheet" href="../CSS/styles.css">
+    <link rel="stylesheet" href="../CSS/styles-phone.css" media="screen and (max-width: 480px)">
+    <link rel="stylesheet" href="../CSS/styles.css" media ="screen and (min-width: 769px)">
     <script src="https://kit.fontawesome.com/69d2da3707.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </head>

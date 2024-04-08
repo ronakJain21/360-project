@@ -21,7 +21,8 @@ while ($row = $result->fetch_assoc()) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All Threads - Admin Dashboard - MessiIsTheGoat</title>
-    <link rel="stylesheet" href="../CSS/stylesadmin2.css">
+    <link rel="stylesheet" href="../CSS/AdminThreadPage-phone.css" media ="screen and (max-width: 480px)">
+    <link rel="stylesheet" href="../CSS/AdminThreadPage.css" media ="screen and (min-width: 769px)">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>

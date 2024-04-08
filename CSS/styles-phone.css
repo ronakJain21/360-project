@@ -1,0 +1,127 @@
+@media only screen and (max-width: 480px) {
+    body {
+        font-family: Arial, sans-serif;
+        background: #f4f4f4;
+        margin: 0;
+        padding: 0;
+        font-size: 14px; /* Smaller font size for mobile */
+    }
+
+    header {
+        background: #004d98; /* Barcelona Blue */
+        color: white;
+        padding: 10px 0; /* Reduced padding */
+    }
+
+    .navbar {
+        display: flex;
+        flex-direction: column; /* Stack nav items vertically */
+        align-items: center; /* Center-align the nav items */
+        padding: 0;
+    }
+
+    .logo-container {
+        margin-bottom: 10px; /* Add space below the logo on mobile */
+    }
+
+    .logo-image {
+        height: 40px; /* Smaller logo for mobile */
+    }
+
+    .logo-title {
+        font-size: 20px; /* Smaller font size for title */
+        margin-left: 5px; /* Reduced margin */
+    }
+
+    .nav-link, .nav-button {
+        font-size: 14px; /* Smaller font size for nav items */
+        padding: 5px;
+        margin: 5px 0; /* Adjust margin for stacked items */
+    }
+
+    .search-container {
+        width: 100%; /* Full-width search container */
+        justify-content: center; /* Center search bar */
+        margin: 10px 0; /* Add vertical space around search bar */
+    }
+
+    .search-input {
+        width: 90%; /* Full-width input */
+        padding: 8px; /* Larger padding for easier interaction */
+    }
+
+    .search-btn {
+        padding: 8px; /* Larger padding for easier interaction */
+    }
+
+    .container {
+        flex-direction: column; /* Stack main content and sidebar */
+    }
+
+    main {
+        width: 100%; /* Full width for main content */
+        margin: 0; /* Remove margin */
+    }
+
+    .create-post-box, .create-thread-box {
+        flex-direction: column; /* Stack input and button */
+        padding: 10px;
+    }
+
+    .create-post-input, .create-thread-input {
+        width: 100%; /* Full-width inputs */
+        margin: 5px 0; /* Add space between input and button */
+    }
+
+    /* Adjust the post layout for better readability on mobile */
+    .post {
+        flex-direction: column;
+        margin: 10px 5px; /* Reduce margin for smaller screens */
+        padding: 10px; /* Reduce padding */
+    }
+
+    /* Ensure comment and voting buttons are easily clickable */
+    .comments-section, .vote, .comment-btn {
+        width: 100%; /* Full-width for easier interaction */
+        margin: 5px 0; /* Adjust spacing */
+    }
+
+    .vote {
+        display: flex;
+        justify-content: space-around; /* Space out voting buttons */
+    }
+
+    .post-info {
+        width: 100%; /* Full width for post info */
+    }
+
+    .comment-section {
+        padding: 5px; /* Reduce padding for comment sections */
+    }
+
+    .comment-btn {
+        padding: 8px; /* Larger padding for easier clicking */
+        width: 100%; /* Full-width buttons */
+    }
+
+    /* Adjust sidebar for mobile */
+    .sidebar {
+        width: 100%; /* Full-width sidebar below the main content */
+        padding: 10px 5px; /* Adjust padding */
+    }
+
+    .sidebar section {
+        padding: 8px; /* Reduce padding inside sidebar sections */
+    }
+
+    .sidebar h3, .sidebar li a {
+        font-size: 16px; /* Adjust font size for readability */
+    }
+
+    /* Footer adjustments for mobile */
+    footer {
+        padding: 15px 5px; /* Adjust padding */
+        font-size: 14px; /* Adjust font size */
+    }
+
+}
