@@ -241,6 +241,11 @@
     .menubar li a:hover {
         background-color: #f4f4f4;
     }
+    
+    .menubar button{
+        color: white;
+    }
+
 
     .settings{
         background: #004d98;

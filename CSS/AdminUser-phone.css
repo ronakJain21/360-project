@@ -42,6 +42,7 @@
     .sidebar-menu li a {
         padding: 10px 15px; /* Adjust padding */
         display: block;
+        color: white;
     }
 
     .admin-main {
