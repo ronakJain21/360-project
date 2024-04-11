@@ -92,7 +92,7 @@
     <div class="container">
         <aside class="menubar">
             <section>
-                <img src="user_image.php" alt="Profile Pic" class="profile_pic">
+                <img src="user_image.php?user_id=<?php echo $userId; ?>" alt="Profile Pic" class="profile_pic">
                 <h2><?php echo htmlspecialchars($username); ?></h2>
                 <button class="settings"><a href="User_Profile_Settings.php">Settings</a></button>
             </section>
