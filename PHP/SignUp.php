@@ -155,7 +155,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <div class="form-error"><?php echo $profilePicError; ?></div>
         <p>Upload Profile Picture (Optional):</p>
-        <input type="file" name="profile_pic" id="profile_pic"><br><br>
+        <input type="file" name="profile_pic_blob" id="profile_pic"><br><br>
 
         <input type="submit" id="button" value="Sign up">
     </form>
